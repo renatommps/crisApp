@@ -1,21 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Image } from 'react-native';
+import Login from './screens/login';
+import Home from './screens/home';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+const MaterialBottomTabs = createMaterialBottomTabNavigator();
+const MaterialTopTabs = createMaterialTopTabNavigator();
+
+export default class App extends React.Component {
+
+  createDrawer = () =>
+    <Drawer.Navigator>
+      <Stack.Screen name="Login" component={Login}/>
+      <Drawer.Screen name="Home" component={Home}/>
+    </Drawer.Navigator>
+
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name="Home" component={Home}
+            options = {{
+              headerTransparent:true,
+              headerLeft : () => (
+                <Image source={require('./assets/favicon.png')}/>
+              ),
+              title : '',
+              headerRight : () => (
+                <Image source={require('./assets/favicon.png')} style={{marginHorizontal: 20, marginTop: 40}}/>
+              )
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
