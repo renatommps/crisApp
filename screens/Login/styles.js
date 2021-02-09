@@ -2,14 +2,14 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#003f5c",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#003f5c',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   logo: {
-    marginBottom: 40,
-    width: "auto",
-    height: 40,
+    width: 300,
+    height: 300,
+    marginBottom: 0
   },
   inputView: {
     width: "80%",
@@ -18,27 +18,30 @@ export const styles = StyleSheet.create({
     height: 50,
     marginBottom: 20,
     justifyContent: "center",
-    padding: 20,
+    padding: 20
   },
   inputText: {
     height: 50,
-    color: "white",
+    color: "white"
   },
-  forgot: {
+  forgot:{
     color: "white",
-    fontSize: 11,
+    fontSize: 11
   },
-  loginBtn: {
+  loginBtn:{
     width: "80%",
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#edc951",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
-    marginBottom: 10,
+    marginBottom: 10
   },
   loginText: {
-    color: "white",
+    color: "#343434"
   },
+  subscribeText: {
+    color: "white"
+  }
 });

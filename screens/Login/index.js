@@ -21,7 +21,7 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={logo} />
+      <Image style={styles.logo} resizeMode="center" source={logo} />
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
