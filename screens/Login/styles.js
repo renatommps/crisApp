@@ -39,7 +39,8 @@ export const styles = StyleSheet.create({
     marginBottom: 10
   },
   loginText: {
-    color: "#343434"
+    color: "white",
+    fontSize: 11
   },
   subscribeText: {
     color: "white"
