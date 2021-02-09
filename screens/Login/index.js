@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 import logo from "../../assets/logo.png";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
+  const handleLogin = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          { name: 'Home' },
+        ],
+      })
+    )
+  }
 
   return (
     <View style={styles.container}>
@@ -33,10 +44,7 @@ const Login = () => {
       <TouchableOpacity>
         <Text style={styles.forgot}>Esqueceu a senha?</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Home")}
-        style={styles.loginBtn}
-      >
+      <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
         <Text style={styles.loginText}>Logar</Text>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -45,4 +53,5 @@ const Login = () => {
     </View>
   );
 };
+
 export default Login;
