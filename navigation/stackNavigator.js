@@ -4,6 +4,7 @@ import { Image } from "react-native";
 import BottomTabNavigator from "./tabNavigator";
 import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
+import Map from "../screens/Map";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ const MainStackNavigator = () => {
         }}
       />
       <Stack.Screen name="Quiz" component={Quiz} />
+      <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
 };
