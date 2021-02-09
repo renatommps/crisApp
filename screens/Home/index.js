@@ -8,7 +8,15 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Text>This is the home screen!</Text>
-      <MapView style={styles.map} />
+      <MapView
+        initialRegion={{
+          latitude: -8.063169,
+          longitude: -34.871139,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+        style={styles.map}
+      />
       <Button
         title="Go to Quiz Screen!"
         onPress={() => navigation.navigate("Quiz")}
