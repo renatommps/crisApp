@@ -28,14 +28,14 @@ const MainStackNavigator = () => {
         component={BottomTabNavigator}
         options={{
           headerTransparent: true,
-          headerLeft: () => <Image source={require("../assets/favicon.png")} />,
-          title: "",
-          headerRight: () => (
-            <Image
-              source={require("../assets/favicon.png")}
-              style={{ marginHorizontal: 20, marginTop: 40 }}
-            />
-          ),
+          // headerLeft: () => <Image source={require("../assets/favicon.png")} />,
+          // title: "",
+          // headerRight: () => (
+          //   <Image
+          //     source={require("../assets/favicon.png")}
+          //     style={{ marginHorizontal: 20, marginTop: 40 }}
+          //   />
+          // ),
         }}
       />
       <Stack.Screen name="Quiz" component={Quiz} />

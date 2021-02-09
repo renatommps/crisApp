@@ -1,18 +1,20 @@
-import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-
-export default class Home extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>This is the home screen!</Text>
-        <Button
+import React from "react";
+import { Button, Text, View } from "react-native";
+import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import MapView from "react-native-maps";
+const Home = () => {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.container}>
+      <Text>This is the home screen!</Text>
+      <MapView style={styles.map} />
+      <Button
         title="Go to Quiz Screen!"
-        onPress={() => this.props.navigation.navigate("Quiz")}
+        onPress={() => navigation.navigate("Quiz")}
       />
-      </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
-
+export default Home;
