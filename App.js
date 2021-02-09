@@ -5,8 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Image } from 'react-native';
-import Login from './screens/login';
-import Home from './screens/home';
+import Login from './screens/Login';
+import Home from './screens/Home';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
