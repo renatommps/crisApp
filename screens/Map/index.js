@@ -1,21 +1,50 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
 import MapView from "react-native-maps";
-
+import { Marker } from "react-native-maps";
+import * as Location from "expo-location";
 const Map = () => {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>This is the Map screen!</Text>
-      <MapView
-        initialRegion={{
-          latitude: -8.063169,
-          longitude: -34.871139,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-        style={styles.map}
-      />
+      {!location && <ActivityIndicator size="large" color="#edc951" />}
+      {location && (
+        <MapView
+          initialRegion={{
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.0,
+            longitudeDelta: 0.0,
+          }}
+          style={styles.map}
+        >
+          <Marker
+            coordinate={{
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+            }}
+            pinColor={"#edc951"}
+            title="Você"
+            description="Você está aqui !!"
+          />
+        </MapView>
+      )}
     </View>
   );
 };

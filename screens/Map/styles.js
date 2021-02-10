@@ -8,6 +8,6 @@ export const styles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height - 150,
+    height: Dimensions.get("window").height,
   },
 });
