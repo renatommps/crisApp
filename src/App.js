@@ -1,16 +1,12 @@
-import React from 'react';
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from "./navigation/stackNavigator";
-import BottomTabNavigator from "./navigation/tabNavigator";
 
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 // import { createStackNavigator } from '@react-navigation/stack';
 // import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 // import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Image } from 'react-native';
-import Login from './screens/Login';
-import Home from './screens/Home';
 
 // const Drawer = createDrawerNavigator();
 // const Stack = createStackNavigator();
@@ -18,7 +14,6 @@ import Home from './screens/Home';
 // const MaterialTopTabs = createMaterialTopTabNavigator();
 
 export default class App extends React.Component {
-
   // createDrawer = () =>
   //   <Drawer.Navigator>
   //     <Stack.Screen name="Login" component={Login}/>
@@ -28,7 +23,7 @@ export default class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <MainStackNavigator/>
+        <MainStackNavigator />
       </NavigationContainer>
     );
   }
