@@ -11,14 +11,8 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      // activeColor="#EDC951"
-      // inactiveColor="#6C6C6C"
-      // showLabel="false"
-      barStyle={{ backgroundColor: '#ffffff', showLabel: "false" }}
-      tabBarOptions={{
-        showLabel: "false",
-        activeTintColor: '#EDC951',
-        inactiveTintColor: '#6C6C6C',
+      barStyle={{
+        backgroundColor: '#ffffff'
       }}
     >
       <Tab.Screen
@@ -26,7 +20,7 @@ const BottomTabNavigator = () => {
         component={Quiz}
         options={{
           tabBarIcon: () => (
-            <MaterialCommunityIcons name="account" color={'#343434'} size={26}  />
+            <MaterialCommunityIcons name="play-circle-outline" color={'#343434'} size={26}  />
           ),
         }}
       />
@@ -35,16 +29,16 @@ const BottomTabNavigator = () => {
         component={Home}
         options={{
           tabBarIcon: () => (
-            <MaterialCommunityIcons name="home" color={'#343434'} size={26} />
+            <MaterialCommunityIcons name="home-outline" color={'#343434'} size={26} />
           )
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="Perfil"
         component={Profile}
         options={{
           tabBarIcon: () => (
-            <MaterialCommunityIcons name="account" color={'#343434'} size={26} />
+            <MaterialCommunityIcons name="account-circle-outline" color={'#343434'} size={26} />
           ),
         }}
       />
