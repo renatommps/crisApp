@@ -4,14 +4,14 @@ import { CommonActions, useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 import logo from "../../assets/logo.png";
 
-const Login = () => {
+const Splash = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const handleLogin = () => {
     navigation.dispatch(
       CommonActions.reset({
-        index: 0,
+        index: 1,
         routes: [
           { name: 'Home' },
         ],
@@ -54,4 +54,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Splash;

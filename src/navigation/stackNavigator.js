@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Image } from "react-native";
 import BottomTabNavigator from "./tabNavigator";
+import Splash from "../screens/Splash";
 import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
 import Map from "../screens/Map";
@@ -19,6 +20,11 @@ const screenOptionStyle = {
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
+    <Stack.Screen
+        name="Splash"
+        component={Splash}
+        options={{ headerShown: false, tabBarVisible: false }}
+      />
       <Stack.Screen
         name="Login"
         component={Login}
