@@ -5,6 +5,8 @@ import BottomTabNavigator from "./tabNavigator";
 import Splash from "../screens/Splash";
 import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
+import KnowledgeArea from "../screens/KnowledgeArea";
+import TalkToCris from "../screens/TalkToCris";
 
 const Stack = createStackNavigator();
 
@@ -12,6 +14,7 @@ const screenOptionStyle = {
   headerStyle: {
     backgroundColor: "#9AC4F8",
   },
+  headerShown: false,
   headerTintColor: "white",
   headerBackTitle: "Back",
 };
@@ -19,7 +22,7 @@ const screenOptionStyle = {
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-    <Stack.Screen
+      <Stack.Screen
         name="Splash"
         component={Splash}
         options={{ headerShown: false, tabBarVisible: false }}
@@ -41,6 +44,8 @@ const MainStackNavigator = () => {
         }}
       />
       <Stack.Screen name="Quiz" component={Quiz} />
+      <Stack.Screen name="KnowledgeArea"component={KnowledgeArea} />
+      <Stack.Screen name="TalkToCris" component={TalkToCris} />
     </Stack.Navigator>
   );
 };
