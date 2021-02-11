@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ActivityIndicator } from "react-native";
+import { Text, View, ActivityIndicator, Platform } from "react-native";
+/* @hide */
+import Constants from "expo-constants";
+/* @end */
 import { styles } from "./styles";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 import * as Location from "expo-location";
-const Map = () => {
+const Map: React.FC = () => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const { status } = await Location.requestPermissionsAsync();
+      /* @hide */
+      if (Platform.OS === "android" && !Constants.isDevice) {
+        setErrorMsg(
+          "Oops, this will not work on Snack in an Android emulator. Try it on your device!"
+        );
+        return;
+      }
+      /* @end */
+      let { status } = await Location.requestPermissionsAsync();
       if (status !== "granted") {
         setErrorMsg("Permission to access location was denied");
         return;
       }
 
-      const location = await Location.getCurrentPositionAsync({});
+      let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
     })();
   }, []);
@@ -27,8 +38,8 @@ const Map = () => {
       {location && (
         <MapView
           initialRegion={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+            latitude: location.coords?.latitude,
+            longitude: location.coords?.longitude,
             latitudeDelta: 0.0,
             longitudeDelta: 0.0,
           }}
@@ -37,7 +48,7 @@ const Map = () => {
           <Marker
             coordinate={{
               latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
+              longitude: location.coords.latitude,
             }}
             pinColor={"#edc951"}
             title="Você"
