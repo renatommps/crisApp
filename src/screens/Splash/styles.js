@@ -7,24 +7,24 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  HelloMessageContainer: {
+  topContainer: {
     flex: 8,
     alignItems: 'flex-start',
     alignSelf: 'stretch',
     marginTop: 100,
     marginLeft: 50
   },
-  ButtonsContainer: {
+  bottomContainer: {
     flex: 4,
     alignItems: 'center',
     alignSelf: 'stretch',
     marginBottom: 50
   },
-  HelloMessageBig: {
+  helloMessageBig: {
     color: "white",
     fontSize: 50
   },
-  HelloMessage: {
+  helloMessage: {
     color: "white",
     fontSize: 11
   },

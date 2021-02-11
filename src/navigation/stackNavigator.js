@@ -28,7 +28,11 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="Login"
         component={Login}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          title: '',
+        }}
       />
       <Stack.Screen
         name="Home"
