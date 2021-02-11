@@ -5,7 +5,6 @@ import BottomTabNavigator from "./tabNavigator";
 import Splash from "../screens/Splash";
 import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
-import Map from "../screens/Map";
 
 const Stack = createStackNavigator();
 
@@ -38,19 +37,10 @@ const MainStackNavigator = () => {
         name="Home"
         component={BottomTabNavigator}
         options={{
-          headerTransparent: true,
-          // headerLeft: () => <Image source={require("../assets/favicon.png")} />,
-          // title: "",
-          // headerRight: () => (
-          //   <Image
-          //     source={require("../assets/favicon.png")}
-          //     style={{ marginHorizontal: 20, marginTop: 40 }}
-          //   />
-          // ),
+          headerTransparent: true
         }}
       />
       <Stack.Screen name="Quiz" component={Quiz} />
-      <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
 };
