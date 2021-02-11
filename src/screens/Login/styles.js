@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   lines: {
     top: 0,
@@ -18,20 +18,12 @@ export const styles = StyleSheet.create({
   topContainer: {
     flex: 8,
     alignItems: 'flex-start',
-    alignSelf: 'stretch',
-
-    // borderWidth: 4,
-    // borderColor: "#20232a",
-    // borderRadius: 6,
+    alignSelf: 'stretch'
   },
   bottomContainer: {
     flex: 4,
     alignItems: 'center',
     alignSelf: 'stretch',
-
-    // borderWidth: 4,
-    // borderColor: "#20232a",
-    // borderRadius: 6,
   },
   inputViewEmail: {
     width: "90%",
