@@ -5,6 +5,8 @@ import BottomTabNavigator from "./tabNavigator";
 import Splash from "../screens/Splash";
 import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
+import Map from "../screens/Map";
+import QuizQuestions from "../screens/QuizQuestions";
 import KnowledgeArea from "../screens/KnowledgeArea";
 import TalkToCris from "../screens/TalkToCris";
 
@@ -25,7 +27,7 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="Splash"
         component={Splash}
-        options={{ headerShown: false, tabBarVisible: false }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Login"
@@ -33,18 +35,20 @@ const MainStackNavigator = () => {
         options={{
           headerShown: true,
           headerTransparent: true,
-          title: '',
+          title: "",
         }}
       />
       <Stack.Screen
         name="Home"
         component={BottomTabNavigator}
         options={{
-          headerTransparent: true
+          headerTransparent: true,
         }}
       />
       <Stack.Screen name="Quiz" component={Quiz} />
-      <Stack.Screen name="KnowledgeArea"component={KnowledgeArea} />
+      <Stack.Screen name="QuizQuestions" component={QuizQuestions} />
+      <Stack.Screen name="Map" component={Map} />
+      <Stack.Screen name="KnowledgeArea" component={KnowledgeArea} />
       <Stack.Screen name="TalkToCris" component={TalkToCris} />
     </Stack.Navigator>
   );
