@@ -6,8 +6,6 @@ import Splash from "../screens/Splash";
 import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
 import QuizQuestions from "../screens/QuizQuestions";
-import Map from "../screens/Map";
-
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
@@ -29,21 +27,17 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="Login"
         component={Login}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          title: "",
+        }}
       />
       <Stack.Screen
         name="Home"
         component={BottomTabNavigator}
         options={{
           headerTransparent: true,
-          // headerLeft: () => <Image source={require("../assets/favicon.png")} />,
-          // title: "",
-          // headerRight: () => (
-          //   <Image
-          //     source={require("../assets/favicon.png")}
-          //     style={{ marginHorizontal: 20, marginTop: 40 }}
-          //   />
-          // ),
         }}
       />
       <Stack.Screen name="Quiz" component={Quiz} />

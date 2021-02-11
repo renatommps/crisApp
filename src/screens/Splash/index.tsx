@@ -11,15 +11,15 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.HelloMessageContainer}>
-        <Text style={styles.HelloMessageBig}>Olá.</Text>
-        <Text style={styles.HelloMessage}>Seja bem vindo ao CRIS!</Text>
-        <Text style={styles.HelloMessage}>
+      <View style={styles.topContainer}>
+        <Text style={styles.helloMessageBig}>Olá.</Text>
+        <Text style={styles.helloMessage}>Seja bem vindo ao CRIS!</Text>
+        <Text style={styles.helloMessage}>
           Seu aplicativo de trânsito gamificado!
         </Text>
-        <Text style={styles.HelloMessage}>Vamos seguir em frente?</Text>
+        <Text style={styles.helloMessage}>Vamos seguir em frente?</Text>
       </View>
-      <View style={styles.ButtonsContainer}>
+      <View style={styles.bottomContainer}>
         <TouchableOpacity
           style={styles.enterBtn}
           onPress={() => navigation.navigate("Login")}

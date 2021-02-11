@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
-import logo from "../../assets/logo.png";
+import lines from "./lines.png";
 
 const Splash = () => {
   const [email, setEmail] = useState("");
@@ -21,35 +21,36 @@ const Splash = () => {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} resizeMode="center" source={logo} />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          value={email}
-          placeholder="Email..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setEmail(text)}
-        />
+      <View style={styles.topContainer}>
+      <Image style={styles.lines} resizeMode="stretch" source={lines} />
       </View>
-      <View style={styles.inputView}>
-        <TextInput
-          secureTextEntry
-          value={password}
-          style={styles.inputText}
-          placeholder="senha..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setPassword(text)}
-        />
+      <View style={styles.bottomContainer}>
+        <View style={styles.inputViewEmail}>
+          <TextInput
+            style={styles.inputText}
+            value={email}
+            placeholder="Email"
+            placeholderTextColor="#6C6C6C"
+            onChangeText={(text) => setEmail(text)}
+          />
+        </View>
+        <View style={styles.inputViewPassword}>
+          <TextInput
+            secureTextEntry
+            value={password}
+            style={styles.inputText}
+            placeholder="Senha"
+            placeholderTextColor="#6C6C6C"
+            onChangeText={(text) => setPassword(text)}
+          />
+        </View>
+        <TouchableOpacity>
+          <Text style={styles.forgot}>Esqueceu a senha?</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
+          <Text style={styles.loginText}>Entrar agora</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity>
-        <Text style={styles.forgot}>Esqueceu a senha?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
-        <Text style={styles.loginText}>Logar</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.loginText}>Cadastrar</Text>
-      </TouchableOpacity>
     </View>
   );
 };
