@@ -14,12 +14,6 @@ import MainStackNavigator from "./src/navigation/stackNavigator";
 // const MaterialTopTabs = createMaterialTopTabNavigator();
 
 export default class App extends React.Component {
-  // createDrawer = () =>
-  //   <Drawer.Navigator>
-  //     <Stack.Screen name="Login" component={Login}/>
-  //     <Drawer.Screen name="Home" component={Home}/>
-  //   </Drawer.Navigator>
-
   render() {
     return (
       <NavigationContainer>
