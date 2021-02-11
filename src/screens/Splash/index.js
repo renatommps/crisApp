@@ -19,7 +19,7 @@ const Login = () => {
       </View>
       <View style={styles.ButtonsContainer}>
         <TouchableOpacity style={styles.enterBtn} onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.loginText}>Entrar agora</Text>
+          <Text style={styles.enterText}>Entrar agora</Text>
         </TouchableOpacity>
         <TouchableOpacity >
           <Text style={styles.createAccountText}>Ainda não tenho conta</Text>

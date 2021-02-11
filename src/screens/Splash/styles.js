@@ -51,5 +51,15 @@ export const styles = StyleSheet.create({
   createAccountText: {
     color: "white",
     textDecorationLine: 'underline',
+  },
+  loginBtn: {
+    width: "80%",
+    backgroundColor: "#edc951",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 40,
+    marginBottom: 10
   }
 });
