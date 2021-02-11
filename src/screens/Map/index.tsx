@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, Platform } from "react-native";
 /* @hide */
@@ -35,11 +36,11 @@ const Map: React.FC = () => {
   return (
     <View style={styles.container}>
       {!location && <ActivityIndicator size="large" color="#edc951" />}
-      {location && (
+      {location?.coords && (
         <MapView
           initialRegion={{
-            latitude: location.coords?.latitude,
-            longitude: location.coords?.longitude,
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
             latitudeDelta: 0.0,
             longitudeDelta: 0.0,
           }}

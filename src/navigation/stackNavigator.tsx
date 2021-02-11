@@ -5,6 +5,7 @@ import BottomTabNavigator from "./tabNavigator";
 import Splash from "../screens/Splash";
 import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
+import QuizQuestions from "../screens/QuizQuestions";
 import Map from "../screens/Map";
 
 const Stack = createStackNavigator();
@@ -20,10 +21,10 @@ const screenOptionStyle = {
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-    <Stack.Screen
+      <Stack.Screen
         name="Splash"
         component={Splash}
-        options={{ headerShown: false, tabBarVisible: false }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Login"
@@ -46,6 +47,7 @@ const MainStackNavigator = () => {
         }}
       />
       <Stack.Screen name="Quiz" component={Quiz} />
+      <Stack.Screen name="QuizQuestions" component={QuizQuestions} />
       <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
