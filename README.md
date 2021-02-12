@@ -27,7 +27,7 @@
 Tudo isso podendo interagir com familiares, amigos e o governo do estado de Pernambuco!
  
  <h4>Observações</h4>
-  O aplicativo atualmente é um MVP, algumas das features como marcações no mapa de calor, salvamento dos dados na núvem, configurações, login e detalhes no layout serão feitos na próxima etapa, devido a limitações no cronograma, disponibilidade e tempo hábil para a intrega completa.
+  O aplicativo atualmente é um MVP, algumas das features como marcações no mapa de calor, salvamento dos dados na núvem, configurações, login e detalhes no layout serão feitos na próxima etapa, devido a limitações no cronograma, disponibilidade e tempo hábil para a entrega completa.
   
   ## Baixar o Aplicativo:
  
