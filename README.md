@@ -25,6 +25,9 @@
   <h4>#FalaProCRIS</h4>
   Sessão do App em que o usuário pode reportar problemas, sugerir melhorias, sugerir conteúdos para a nossa base de conhecimento, sugerir perguntas para o jogo, comunicar o governo sobre acidentes, entre outras coisas.
 Tudo isso podendo interagir com familiares, amigos e o governo do estado de Pernambuco!
+ 
+  ## Baixar o Aplicativo:
+ 
 <p align="center">
 <img src="https://i.imgur.com/uasRHzC.png" width="200" height="auto" />
  </p>
