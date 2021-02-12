@@ -5,6 +5,10 @@
 ## Tecnologias
 <img src="https://i1.wp.com/blog.alexdevero.com/wp-content/uploads/2018/12/react-native-expo-how-to-build-your-first-mobile-app.jpg?w=1024&ssl=1"/> 
 
+## [React Native](https://reactnative.dev/)
+## [Expo](https://expo.io/)
+## [Typescript](https://www.typescriptlang.org/)
+
 ## Features
 
  <h4>Espaço de conhecimento:</h4> 
