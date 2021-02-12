@@ -1,6 +1,6 @@
 # crispApp
 
-## CRIS, um aplicativo para smartphones que tem como propósito a mesma missão de São Cristóvão que é ter firmeza e vigilância para que todos cheguem no destino sem acidentes!
+<h6> CRIS, um aplicativo para smartphones que tem como propósito a mesma missão de São Cristóvão que é ter firmeza e vigilância para que todos cheguem no destino sem acidentes! </h6>
 
 
 O CRIS é um aplicativo inovador para smartphones em que, ao se cadastrar e fazer o login, o usuário tem algumas funções como um espaço de conhecimento, um jogo de perguntas e respostas, um mapa de calor, um painel de notificações e o #FalaProCRIS.
