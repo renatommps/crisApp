@@ -5,10 +5,8 @@ import BottomTabNavigator from "./tabNavigator";
 import Splash from "../screens/Splash";
 import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
-import Map from "../screens/Map";
 import QuizQuestions from "../screens/QuizQuestions";
 import KnowledgeArea from "../screens/KnowledgeArea";
-import TalkToCris from "../screens/TalkToCris";
 
 const Stack = createStackNavigator();
 
@@ -47,9 +45,7 @@ const MainStackNavigator = () => {
       />
       <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="QuizQuestions" component={QuizQuestions} />
-      <Stack.Screen name="Map" component={Map} />
       <Stack.Screen name="KnowledgeArea" component={KnowledgeArea} />
-      <Stack.Screen name="TalkToCris" component={TalkToCris} />
     </Stack.Navigator>
   );
 };

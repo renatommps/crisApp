@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Button, Text, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import MapView from "react-native-maps";
