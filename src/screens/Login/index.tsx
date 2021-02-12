@@ -8,17 +8,6 @@ const Splash = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
-  useEffect(() => {
-    // checkIfLoggedIn();
-  }, []);
-  // const checkIfLoggedIn = () => {
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       handleLogin();
-  //     } else {
-  //     }
-  //   });
-  // };
 
   const handleLogin = () => {
     navigation.dispatch(
@@ -59,14 +48,6 @@ const Splash = () => {
         </TouchableOpacity>
         <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
           <Text style={styles.loginText}>Entrar agora</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            console.log("test");
-          }}
-          style={styles.loginBtn}
-        >
-          <Text style={styles.loginText}>Entrar com Google</Text>
         </TouchableOpacity>
       </View>
     </View>

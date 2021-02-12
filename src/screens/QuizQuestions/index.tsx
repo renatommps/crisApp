@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 import Questions from "../../components/Questions";
@@ -129,6 +129,20 @@ const Quiz: React.FC = () => {
               questionNumber={number + 1}
               question={questions[number].question}
             />
+            {questions[number].image != "" && (
+              <Image
+                style={{
+                  width: 100,
+                  height: 100,
+                  marginTop: 15,
+                  marginLeft: 125,
+                }}
+                source={{
+                  uri: `${questions[number].image}`,
+                }}
+              ></Image>
+            )}
+
             <Answers
               answers={questions[number].answers}
               {...{ setAnswer, checkAnswer }}
@@ -148,6 +162,7 @@ const Quiz: React.FC = () => {
           width: 60,
           height: 60,
           position: "absolute",
+          marginTop: 15,
           bottom: 20,
           right: 20,
         }}
