@@ -18,7 +18,7 @@ const Questions = ({ questionNumber, question }: QuestionProps) => {
       <Text
         style={{
           fontSize: 16,
-          color: "#006996",
+          color: "#EDC951",
           marginRight: 10,
         }}
       >
@@ -26,7 +26,7 @@ const Questions = ({ questionNumber, question }: QuestionProps) => {
       </Text>
       <Text
         style={{
-          color: "#000",
+          color: "#EDC951",
 
           textAlign: "left",
           fontSize: 16,

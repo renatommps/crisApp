@@ -4,7 +4,7 @@ import { RectButton } from "react-native-gesture-handler";
 import { elevate } from "react-native-elevate";
 const styles = StyleSheet.create({
   container: {
-    height: 43,
+    height: 60,
     width: "100%",
     alignItems: "center",
     flexDirection: "row",
@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     color: "#000",
-    textTransform: "capitalize",
   },
 });
 
@@ -41,7 +40,12 @@ const StyledButton = ({ answer, onPress, correct, disabled }: ButtonProps) => {
         { backgroundColor: !disabled ? "#fff" : "#ccc" },
       ]}
     >
-      <Text style={{ ...styles.label, color: correct ? "#ee3e" : "#006996" }}>
+      <Text
+        style={{
+          ...styles.label,
+          color: correct ? "#013220" : "#3e3e3e",
+        }}
+      >
         {answer}
       </Text>
     </RectButton>

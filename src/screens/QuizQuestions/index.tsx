@@ -4,7 +4,7 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 import Questions from "../../components/Questions";
 import Answers from "../../components/Answers";
-import { getQuizQuestions, QuestionsState } from "../../utils/Utils";
+import { getQuizQuestions, QuestionsState } from "../../utils/utils";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 export type AnswerObject = {
@@ -17,7 +17,7 @@ export type AnswerObject = {
 const Quiz: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionsState[]>([]);
-  const [userAnserws, setUserAnserws] = useState<AnswerObject[]>([]);
+  const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [TOTAL_QUESTIONS] = useState(10);
@@ -31,7 +31,7 @@ const Quiz: React.FC = () => {
     const newQuestions = await getQuizQuestions();
     setQuestions(newQuestions);
     setScore(0);
-    setUserAnserws([]);
+    setUserAnswers([]);
     setNumber(0);
     setLoading(false);
   };
@@ -44,16 +44,19 @@ const Quiz: React.FC = () => {
     if (!gameOver) {
       const answer = setAnswer.current;
       const correct = questions[number].correct_answer === answer;
-      if (correct) {
-        setScore((prev) => prev + 1);
-      }
+      if (correct) setScore((prev) => prev + 1);
+
       const answerObject = {
         question: questions[number].question,
         answer,
         correct,
         correctAnswer: questions[number].correct_answer,
       };
-      setUserAnserws((prev) => [...prev, answerObject]);
+      //@ts-ignore
+      setUserAnswers((prev) => [...prev, answerObject]);
+      setTimeout(() => {
+        nextQuestion();
+      }, 800);
     }
   };
 
@@ -73,7 +76,7 @@ const Quiz: React.FC = () => {
         justifyContent: "flex-end",
         position: "relative",
         padding: 20,
-        backgroundColor: "#fff",
+        backgroundColor: "#6C6C6C",
       }}
     >
       <View style={{ flex: 1 }}>
@@ -84,28 +87,44 @@ const Quiz: React.FC = () => {
             justifyContent: "space-between",
           }}
         >
-          <Text style={{ fontSize: 16 }}>Questions</Text>
+          <Text style={{ fontSize: 16, color: "#FFF" }}>Pontos: {score}</Text>
           <Text
             style={{
               fontSize: 16,
-              color: "#006996",
+              color: "#EDC951",
             }}
           >
-            1/10
+            {number + 1}/10
           </Text>
         </View>
-        <View style={{ marginVertical: 20 }}>
-          <Text
-            style={{
-              fontSize: 16,
-              color: "#006996",
-            }}
-          >
-            Pontos: {score}
-          </Text>
-        </View>
+
+        <View style={{ marginVertical: 2 }}></View>
         {questions.length > 0 ? (
           <>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 10,
+                justifyContent: "space-between",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "#FFF",
+                }}
+              >
+                Categoria:
+              </Text>
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "#FFF",
+                }}
+              >
+                {questions[number].category}
+              </Text>
+            </View>
             <Questions
               questionNumber={number + 1}
               question={questions[number].question}
@@ -113,7 +132,8 @@ const Quiz: React.FC = () => {
             <Answers
               answers={questions[number].answers}
               {...{ setAnswer, checkAnswer }}
-              userAnswer={userAnserws ? userAnserws[number] : undefined}
+              //@ts-ignore
+              userAnserws={userAnswers ? userAnswers[number] : undefined}
             />
           </>
         ) : null}
@@ -121,7 +141,7 @@ const Quiz: React.FC = () => {
       <View
         style={{
           padding: 20,
-          backgroundColor: "#006996",
+          backgroundColor: "#EDC951",
           alignItems: "center",
           justifyContent: "center",
           borderRadius: 300,
@@ -135,17 +155,17 @@ const Quiz: React.FC = () => {
         <TouchableWithoutFeedback>
           {!gameOver && !loading && number != TOTAL_QUESTIONS - 1 ? (
             <MaterialCommunityIcons
-              name="play-circle"
+              name="play"
               color="#fff"
               size={22}
               onPress={() => nextQuestion()}
             />
           ) : (
             <MaterialCommunityIcons
-              name="play-circle"
+              name="arrow-right"
               color="#fff"
               size={22}
-              onPress={() => startQuiz()}
+              onPress={() => nextQuestion()}
             />
           )}
         </TouchableWithoutFeedback>

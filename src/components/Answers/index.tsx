@@ -6,14 +6,14 @@ interface AnswersProps {
   answers: string[];
   setAnswer: any;
   checkAnswer: () => void;
-  userAnserws: AnswerObject | undefined;
+  userAnserw: AnswerObject | undefined;
 }
 
 export default function Answers({
   answers,
   setAnswer,
   checkAnswer,
-  userAnserws,
+  userAnserw,
 }: AnswersProps) {
   return (
     <View
@@ -26,11 +26,11 @@ export default function Answers({
       }}
     >
       {answers.map((answer, key) => (
-        <Fragment>
+        <Fragment key={answer}>
           <StyledButton
             {...{ key, answer }}
-            correct={userAnserws?.correctAnswer === answer}
-            disabled={userAnserws ? true : false}
+            correct={userAnserw?.correctAnswer === answer}
+            disabled={userAnserw ? true : false}
             onPress={() => {
               setAnswer.current = answer;
               checkAnswer();
