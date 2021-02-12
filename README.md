@@ -26,7 +26,7 @@
   Sessão do App em que o usuário pode reportar problemas, sugerir melhorias, sugerir conteúdos para a nossa base de conhecimento, sugerir perguntas para o jogo, comunicar o governo sobre acidentes, entre outras coisas.
 Tudo isso podendo interagir com familiares, amigos e o governo do estado de Pernambuco!
  
- <h4>#Observações</h4>
+ <h4>Observações</h4>
   O aplicativo atualmente é um MVP, algumas das features como marcações no mapa de calor, salvamento dos dados na núvem, configurações, login e detalhes no layout serão feitos na próxima etapa, devido a limitações no cronograma, disponibilidade e tempo hábil para a intrega completa.
   
   ## Baixar o Aplicativo:
