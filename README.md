@@ -3,9 +3,10 @@
 <h6> CRIS, um aplicativo para smartphones que tem como propósito a mesma missão de São Cristóvão que é ter firmeza e vigilância para que todos cheguem no destino sem acidentes! </h6>
 
 ## Tecnologias
+
 <div>
 <p align="center">
-<img src="https://i1.wp.com/blog.alexdevero.com/wp-content/uploads/2018/12/react-native-expo-how-to-build-your-first-mobile-app.jpg?w=1024&ssl=1" width="auto" height="400" /> 
+<img src="https://i1.wp.com/blog.alexdevero.com/wp-content/uploads/2018/12/react-native-expo-how-to-build-your-first-mobile-app.jpg?w=1024&ssl=1"  /> 
  </p>
 </div>
 <p align="center">
@@ -26,6 +27,9 @@
   Sessão do App em que o usuário pode reportar problemas, sugerir melhorias, sugerir conteúdos para a nossa base de conhecimento, sugerir perguntas para o jogo, comunicar o governo sobre acidentes, entre outras coisas.
 Tudo isso podendo interagir com familiares, amigos e o governo do estado de Pernambuco!
  
+ <h4>Observações</h4>
+  O aplicativo atualmente é um MVP, algumas das features como marcações no mapa de calor, salvamento dos dados na núvem, configurações, login e detalhes no layout serão feitos na próxima etapa, devido a limitações no cronograma, disponibilidade e tempo hábil para a entrega completa.
+  
   ## Baixar o Aplicativo:
  
 <p align="center">
