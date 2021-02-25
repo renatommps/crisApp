@@ -7,6 +7,7 @@ import Login from "../screens/Login";
 import Quiz from "../screens/Quiz";
 import QuizQuestions from "../screens/QuizQuestions";
 import KnowledgeArea from "../screens/KnowledgeArea";
+import SignUp from "../screens/SignUp";
 
 const Stack = createStackNavigator();
 
@@ -36,6 +37,16 @@ const MainStackNavigator = () => {
           title: "",
         }}
       />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          title: "",
+        }}
+      />
+
       <Stack.Screen
         name="Home"
         component={BottomTabNavigator}

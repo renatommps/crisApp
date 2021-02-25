@@ -26,7 +26,7 @@ const Login = () => {
         >
           <Text style={styles.enterText}>Entrar agora</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
           <Text style={styles.createAccountText}>Ainda não tenho conta</Text>
         </TouchableOpacity>
         <Image style={styles.logo} resizeMode="center" source={logo} />
