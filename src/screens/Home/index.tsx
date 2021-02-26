@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import MapView, { Heatmap, Marker } from "react-native-maps";
+import  { Heatmap, Marker } from "react-native-maps";
+import MapView from "react-native-map-clustering";
 import { IconButton, Colors } from 'react-native-paper';
 import * as Location from "expo-location";
-import { acidentes } from "./acidentes-2020";
 
 const Home = () => {
   const navigation = useNavigation();
   const [trafficView, setTrafficView] = useState<boolean>(false);
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
-  const [accidentLocation, setAccident] = useState<Location.LocationGeocodedLocation | null>(null);
+  const [acidentes, setAcidentes] = useState<any[]>([]);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
@@ -58,6 +58,25 @@ const Home = () => {
   //   ...
   // }
 
+  useEffect(() => {
+    (async () => {
+      try {
+        fetch('https://api.crisapp.tk/geolocations')
+        .then((response) => response.json())
+        .then((json) => {
+          if (Array.isArray(json)) setAcidentes(json.slice(100))
+        })
+        .catch((error) => {
+          setErrorMsg("Errror getting accident location: " + error.message);
+        });
+      } catch (e) {
+        console.log("Errror getting accident location: " + e.message);
+        setErrorMsg("Errror getting accident location: " + e.message);
+        return;
+      }
+    })();
+  }, []);
+
   const getLocations = () => {
     return acidentes.map((acidente: any) => {
       return {
@@ -88,6 +107,10 @@ const Home = () => {
           showsUserLocation={true}
           showsCompass={true}
           showsPointsOfInterest={false}
+          animationEnabled={false}
+          minPoints={1}
+          tracksViewChanges={false}
+          clusterColor={Colors.red700}
         >
 
           {acidentes[0] != null &&
