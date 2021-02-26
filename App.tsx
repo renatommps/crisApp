@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import MainStackNavigator from "./src/navigation/stackNavigator";
-
+import Routes from "./src/navigation";
+import AppProvider from "./src/hooks";
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 // import { createStackNavigator } from '@react-navigation/stack';
@@ -17,7 +17,9 @@ export default class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <MainStackNavigator />
+        <AppProvider>
+          <Routes />
+        </AppProvider>
       </NavigationContainer>
     );
   }

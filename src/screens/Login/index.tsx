@@ -1,21 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
-import { CommonActions, useNavigation } from "@react-navigation/native";
-import { styles } from "./styles";
+import React, { useState } from "react";
+import {
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  Alert,
+} from "react-native";
+//@ts-ignore
 import lines from "./lines.png";
+import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../hooks/auth";
 
 const Splash = () => {
+  const { signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation();
 
-  const handleLogin = () => {
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 1,
-        routes: [{ name: "Home" }],
-      })
-    );
+  const handleLogin = async () => {
+    await signIn({
+      email: email,
+      password: password,
+    }).catch((err) => {
+      console.log(err);
+      Alert.alert(
+        "Erro na autenticação",
+        "Ocorreu um erro ao fazer login, cheque as credenciais."
+      );
+    });
   };
 
   return (
