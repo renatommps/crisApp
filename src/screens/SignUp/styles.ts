@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   lines: {
-    top: 0,
+    top: -110,
     bottom: 0,
     left: 0,
     right: 0,
@@ -16,12 +16,13 @@ export const styles = StyleSheet.create({
     height: "88%",
   },
   topContainer: {
-    flex: 8,
+    flex: 1,
     alignItems: "flex-start",
     alignSelf: "stretch",
   },
   bottomContainer: {
-    flex: 4,
+    marginTop: -30,
+    marginBottom: 50,
     alignItems: "center",
     alignSelf: "stretch",
   },
