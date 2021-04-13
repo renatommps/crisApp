@@ -9,12 +9,13 @@ export const styles = StyleSheet.create({
   },
   map: {
     position: "absolute",
+    height: "125%",
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
+    // height: Dimensions.get("window").height,
   },
   trafficIcon: {
     position: "absolute",
     bottom: 0,
-    right: 0
-  }
+    right: 0,
+  },
 });

@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import  { Heatmap, Marker } from "react-native-maps";
+import { UrlTile } from "react-native-maps";
+import { Heatmap, Marker, PROVIDER_DEFAULT } from "react-native-maps";
 import MapView from "react-native-map-clustering";
-import { IconButton, Colors } from 'react-native-paper';
+import { IconButton, Colors } from "react-native-paper";
 import * as Location from "expo-location";
 
 const Home = () => {
   const navigation = useNavigation();
   const [trafficView, setTrafficView] = useState<boolean>(false);
-  const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const [location, setLocation] = useState<Location.LocationObject | null>(
+    null
+  );
   const [acidentes, setAcidentes] = useState<any[]>([]);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -32,9 +35,9 @@ const Home = () => {
           accuracy: null,
           altitudeAccuracy: null,
           heading: null,
-          speed: null
+          speed: null,
         },
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
       setLocation(location);
     })();
@@ -61,14 +64,14 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       try {
-        fetch('https://api.crisapp.tk/geolocations')
-        .then((response) => response.json())
-        .then((json) => {
-          if (Array.isArray(json)) setAcidentes(json.slice(100))
-        })
-        .catch((error) => {
-          setErrorMsg("Errror getting accident location: " + error.message);
-        });
+        fetch("https://api.crisapp.tk/geolocations")
+          .then((response) => response.json())
+          .then((json) => {
+            if (Array.isArray(json)) setAcidentes(json.slice(100));
+          })
+          .catch((error) => {
+            setErrorMsg("Errror getting accident location: " + error.message);
+          });
       } catch (e) {
         console.log("Errror getting accident location: " + e.message);
         setErrorMsg("Errror getting accident location: " + e.message);
@@ -82,8 +85,8 @@ const Home = () => {
       return {
         latitude: acidente.latitude,
         longitude: acidente.longitude,
-        weight: 1
-      }
+        weight: 1,
+      };
     });
   };
 
@@ -92,6 +95,7 @@ const Home = () => {
       {!location && <ActivityIndicator size="large" color="#edc951" />}
       {location && (
         <MapView
+          provider={PROVIDER_DEFAULT}
           initialRegion={{
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
@@ -103,7 +107,7 @@ const Home = () => {
           loadingEnabled={true}
           loadingIndicatorColor="#666666"
           loadingBackgroundColor="#eeeeee"
-          moveOnMarkerPress ={false}
+          moveOnMarkerPress={false}
           showsUserLocation={true}
           showsCompass={true}
           showsPointsOfInterest={false}
@@ -112,33 +116,31 @@ const Home = () => {
           tracksViewChanges={false}
           clusterColor={Colors.red700}
         >
+          <UrlTile
+            urlTemplate={`https://mapas.pe.gov.br/hot/{z}/{x}/{y}.png`}
+            maximumZ={19}
+            flipY={false}
+          />
+          {acidentes[0] != null && (
+            <Heatmap points={getLocations()} radius={50} opacity={0.5} />
+          )}
 
           {acidentes[0] != null &&
-            <Heatmap
-              points={getLocations()}
-              radius={50}
-              opacity={0.5}
-
-            />
-          }
-
-          {acidentes[0] != null &&  acidentes.map((acidente: any) => {
-            return <Marker
-              key={acidente.id}
-              coordinate={{
-                latitude: acidente.latitude,
-                longitude: acidente.longitude,
-              }}
-              title="Acidente!"
-              description={acidente.descricao}
-              >
-                <IconButton
-                  icon={"alert"}
-                  color={Colors.red700}
-                  size={30}
-                />
-              </Marker>
-          })}
+            acidentes.map((acidente: any) => {
+              return (
+                <Marker
+                  key={acidente.id}
+                  coordinate={{
+                    latitude: acidente.latitude,
+                    longitude: acidente.longitude,
+                  }}
+                  title="Acidente!"
+                  description={acidente.descricao}
+                >
+                  <IconButton icon={"alert"} color={Colors.red700} size={30} />
+                </Marker>
+              );
+            })}
         </MapView>
       )}
       <IconButton
