@@ -64,7 +64,7 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       try {
-        fetch("https://api.crisapp.tk/geolocations")
+        fetch("https://cris.seplag.pe.gov.br/geolocations")
           .then((response) => response.json())
           .then((json) => {
             if (Array.isArray(json)) setAcidentes(json.slice(100));

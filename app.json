@@ -20,6 +20,11 @@
       "supportsTablet": true
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDddE2LIUWFERj_ah1vUqccGZRUdelYIM0"
+        }
+      },
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCES_FINE_LOCATION",
@@ -34,9 +39,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "androidNavigationBar": {
-      "visible": "immersive"
     }
   }
 }

@@ -5,12 +5,14 @@ import { styles } from "./styles";
 import { useAuth } from "../../hooks/auth";
 const Profile = () => {
   const navigation = useNavigation();
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+  console.log(user);
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
-        <Text style={styles.pontuationText}>Sua pontuação</Text>
-        <Text style={styles.pontuationValue}>17pts</Text>
+        {/* @ts-ignore */}
+        <Text style={styles.pontuationText}>Olá, {user.name}</Text>
+        <Text style={styles.pontuationValue}></Text>
       </View>
       <View style={styles.bottomContainer}>
         <TouchableOpacity

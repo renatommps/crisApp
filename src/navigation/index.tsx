@@ -14,8 +14,7 @@ const Routes: React.FC = () => {
     );
   }
 
-  // return user ? <MainStackNavigator /> : <AuthStackNavigator />;
-  return <MainStackNavigator />;
+  return user ? <MainStackNavigator /> : <AuthStackNavigator />;
 };
 
 export default Routes;
