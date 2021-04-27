@@ -43,7 +43,10 @@ const Splash = () => {
             value={email}
             placeholder="Email"
             placeholderTextColor="#6C6C6C"
-            onChangeText={(text) => setEmail(text)}
+            keyboardType="email-address"
+            autoCorrect={false}
+            autoCapitalize="none"
+            onChangeText={(text) => setEmail(text.trim())}
           />
         </View>
         <View style={styles.inputViewPassword}>
@@ -53,7 +56,7 @@ const Splash = () => {
             style={styles.inputText}
             placeholder="Senha"
             placeholderTextColor="#6C6C6C"
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={(text) => setPassword(text.trim())}
           />
         </View>
         <TouchableOpacity>

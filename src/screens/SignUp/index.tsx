@@ -22,35 +22,37 @@ const Splash = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
+  useEffect(() => {
+    if (isValid) handleLogin();
+  }, [isValid]);
+
   const handleLogin = () => {
+    if (!isValid) return;
     setIsLoading(true);
-    checkValidForm();
+
     const data = {
       name: name,
       email: email,
       password: password,
     };
 
-    if (isValid) {
-      api
-        .post("/users", data)
-        .then(() => {
-          setIsLoading(false);
-          Alert.alert(
-            "Cadastro realizado com sucesso!",
-            "Você já pode fazer login na aplicação."
-          );
-          setIsLoading(true);
-          navigation.navigate("Login");
-        })
-        .catch((err) => {
-          setIsLoading(false);
-          Alert.alert(
-            "Erro no cadastro",
-            "Ocorreu um erro ao fazer cadastro, tente novamente."
-          );
-        });
-    }
+    api.post("/users", data)
+    .then(() => {
+      setIsLoading(false);
+      Alert.alert(
+        "Cadastro realizado com sucesso!",
+        "Você já pode fazer login na aplicação."
+      );
+      setIsLoading(true);
+      navigation.navigate("Login");
+    })
+    .catch((err) => {
+      setIsLoading(false);
+      Alert.alert(
+        "Erro no cadastro",
+        "Ocorreu um erro ao fazer cadastro, tente novamente."
+      );
+    });
   };
 
   const checkValidForm = () => {
@@ -91,7 +93,7 @@ const Splash = () => {
             value={name}
             placeholder="Seu nome"
             placeholderTextColor="#6C6C6C"
-            onChangeText={(text) => setName(text)}
+            onChangeText={(text) => setName(text.trim())}
           />
         </View>
         <View style={styles.inputViewEmail}>
@@ -100,7 +102,10 @@ const Splash = () => {
             value={email}
             placeholder="Email"
             placeholderTextColor="#6C6C6C"
-            onChangeText={(text) => setEmail(text)}
+            keyboardType="email-address"
+            autoCorrect={false}
+            autoCapitalize="none"
+            onChangeText={(text) => setEmail(text.trim())}
           />
         </View>
 
@@ -111,7 +116,9 @@ const Splash = () => {
             style={styles.inputText}
             placeholder="Senha"
             placeholderTextColor="#6C6C6C"
-            onChangeText={(text) => setPassword(text)}
+            autoCorrect={false}
+            autoCapitalize="none"
+            onChangeText={(text) => setPassword(text.trim())}
           />
         </View>
         <View style={styles.inputViewPassword}>
@@ -120,11 +127,13 @@ const Splash = () => {
             value={passwordConfirm}
             style={styles.inputText}
             placeholder="Confirme sua senha"
+            autoCorrect={false}
+            autoCapitalize="none"
             placeholderTextColor="#6C6C6C"
-            onChangeText={(text) => setPasswordConfirm(text)}
+            onChangeText={(text) => setPasswordConfirm(text.trim())}
           />
         </View>
-        <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
+        <TouchableOpacity onPress={checkValidForm} style={styles.loginBtn}>
           <Text style={styles.loginText}>Criar Conta</Text>
         </TouchableOpacity>
       </View>
