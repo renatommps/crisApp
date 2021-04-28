@@ -59,9 +59,9 @@ const Splash = () => {
             onChangeText={(text) => setPassword(text.trim())}
           />
         </View>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Text style={styles.forgot}>Esqueceu a senha?</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
           <Text style={styles.loginText}>Entrar agora</Text>
         </TouchableOpacity>

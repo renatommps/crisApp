@@ -31,9 +31,9 @@ const Profile = () => {
         >
           <Text style={styles.bottomText}>#FaleComOCris</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={signOut}>
+        {/* <TouchableOpacity style={styles.btn} onPress={signOut}>
           <Text style={styles.bottomText}>Logout</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );
