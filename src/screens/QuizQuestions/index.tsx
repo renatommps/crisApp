@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert, StyleSheet, TouchableHighlight, Modal } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 import Questions from "../../components/Questions";
@@ -22,13 +22,17 @@ const Quiz: React.FC = () => {
   const [gameOver, setGameOver] = useState(true);
   const [TOTAL_QUESTIONS] = useState(10);
   const [number, setNumber] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalData, setModalData] = useState<any>({isCorrect: false, justification: ''});
   const setAnswer = useRef(null);
 
   const startQuiz = async () => {
+    // console.log('[startQuiz] start quiz called.');
     setLoading(true);
     setGameOver(false);
 
     const newQuestions = await getQuizQuestions();
+    // console.log('[startQuiz] newQuestions:', newQuestions);
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
@@ -37,30 +41,47 @@ const Quiz: React.FC = () => {
   };
 
   useEffect(() => {
+    // console.log('[useEffect] will start quiz');
     startQuiz();
   }, []);
 
-  const checkAnswer = () => {
-    if (!gameOver) {
-      const answer = setAnswer.current;
-      const correct = questions[number].correct_answer === answer;
-      if (correct) setScore((prev) => prev + 1);
 
+  const checkAnswer = () => {
+    const answer = setAnswer.current;
+    const correct = questions[number].correct_answer === answer;
+    // console.log('[checkAnswer] number:', number, ', gameover:', gameOver, ', score:', score, ', correct:', correct, ', answer:', answer);
+
+    if (!gameOver) {
       const answerObject = {
         question: questions[number].question,
         answer,
         correct,
         correctAnswer: questions[number].correct_answer,
       };
+
       //@ts-ignore
       setUserAnswers((prev) => [...prev, answerObject]);
+
+      if (correct) {
+        setScore((prev) => prev + 1);
+      }
+
       setTimeout(() => {
-        nextQuestion();
+        showJustification(questions[number], answerObject);
       }, 800);
+    } else {
+      console.log('game over!');
     }
   };
 
+  const showJustification = (question: any, answer: any) => {
+    // console.log('[showJustification] question:', question, ', answer:', answer);
+    setModalData({isCorrect: answer.correct, justification: question.justification});
+    setModalVisible(true);
+  };
+
   const nextQuestion = () => {
+    setModalVisible(false);
     const nextQ = number + 1;
     if (nextQ === TOTAL_QUESTIONS) {
       setGameOver(true);
@@ -185,7 +206,66 @@ const Quiz: React.FC = () => {
           )}
         </TouchableWithoutFeedback>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Resposta {modalData.isCorrect ? 'correta!' : 'incorreta!'}</Text>
+            <Text style={styles.modalText}>{modalData.justification}</Text>
+            <TouchableHighlight
+              style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
+              onPress={() => {
+                nextQuestion()
+              }}>
+              <Text style={styles.textStyle}>Continuar</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: '#F194FF',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+});
+
 export default Quiz;

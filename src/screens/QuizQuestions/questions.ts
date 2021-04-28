@@ -10,8 +10,8 @@ export const questions = {
       question:
         "Quando o motorista é parado para realizar o teste de bafômetro, qual é o índice de álcool no organismo aceitável?",
       type: "multiple",
-      // justification:
-      //   "Segundo o Art. 165 do Código Brasileiro de Trânsito, dirigir sob qualquer índice de álcool no organismo é infração gravíssima, que ocasiona multa de cerca de 3 mil reais, suspensão do direito de dirigir, recolhimento do documento de habilitação e retenção do veículo.",
+      justification:
+        "Segundo o Art. 165 do Código Brasileiro de Trânsito, dirigir sob qualquer índice de álcool no organismo é infração gravíssima, que ocasiona multa de cerca de 3 mil reais, suspensão do direito de dirigir, recolhimento do documento de habilitação e retenção do veículo.",
     },
     {
       id: "2",
