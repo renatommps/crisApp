@@ -8,14 +8,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   topContainer: {
-    flex: 8,
+    flex: 4,
     alignItems: 'flex-start',
     alignSelf: 'stretch',
     marginTop: 100,
     marginLeft: 50
   },
   bottomContainer: {
-    flex: 4,
+    flex: 6,
     alignItems: 'center',
     alignSelf: 'stretch',
     marginBottom: 50
@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 100,
-    marginTop: 50,
-    marginBottom: 0
+    marginTop: 0,
+    marginBottom: 60
   },
   enterBtn: {
     width: "70%",
