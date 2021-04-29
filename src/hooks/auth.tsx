@@ -13,8 +13,19 @@ interface SignInCredntials {
   email: string;
   password: string;
 }
+
+interface User {
+  id: string;
+  email: string,
+  name: string,
+  pontuation?: number,
+  'created at': string,
+  'updated at': string
+ }
+
 interface AuthContextData {
-  user: object;
+  user: User;
+  token: string;
   signIn(credentials: SignInCredntials): Promise<void>;
   signOut(): void;
   loading: boolean;
@@ -22,27 +33,34 @@ interface AuthContextData {
 
 interface AuthState {
   token: string;
-  user: object;
+  user: User;
 }
+
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    // console.log('[auth useEffect  called]');
     async function loadStoreData(): Promise<void> {
+      // console.log('[auth useEffect loadStoreData called]');
       const [token, user] = await AsyncStorage.multiGet([
         "@Cris:token",
         "@Cris:user",
       ]);
       if (token[1] && user[1]) {
+        // console.log('[auth useEffect will set data]');
         setData({ token: token[1], user: JSON.parse(user[1]) });
       }
       setLoading(false);
     }
     loadStoreData();
-  });
+  }, []);
 
   const signIn = useCallback(async ({ email, password }) => {
+    // console.log('[auth signIn  called]');
+
     const response = await api.post("sessions", {
       email,
       password,
@@ -55,6 +73,8 @@ const AuthProvider: React.FC = ({ children }) => {
     ]);
 
     setData({ token, user });
+
+    // console.log('[auth signIn  data set]');
   }, []);
 
   const signOut = useCallback(async () => {
@@ -63,7 +83,7 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut, loading }}>
+    <AuthContext.Provider value={{ user: data.user, token: data.token, signIn, signOut, loading }}>
       {children}
     </AuthContext.Provider>
   );
