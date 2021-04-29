@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { Linking, Text, TouchableOpacity, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { styles } from "./styles";
 import { useAuth } from "../../hooks/auth";
 import api from "../../utils/api";
@@ -10,6 +10,7 @@ const Profile = () => {
   const navigation = useNavigation();
   const { token, user } = useAuth();
   const [pontuation, setPontuation] = useState<number>(0);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     // console.log('inside userEffect, user:', user);
@@ -21,7 +22,7 @@ const Profile = () => {
 
     // Execute the created function directly
     handleProfileUpdate();
-  }, []);
+  }, [isFocused]);
 
   const updateProfile = useCallback(async () => {
     try {
@@ -38,8 +39,8 @@ const Profile = () => {
         pontuation: 0
       };
 
-      console.log('config:', bodyParameters, config);
-      console.log('Authorization:', token);
+      // console.log('config:', bodyParameters, config);
+      // console.log('Authorization:', token);
       api.patch("profile", bodyParameters, config)
       .then(function (response) {
         // console.log('response:', response, 'pontuation:', response.data.pontuation);

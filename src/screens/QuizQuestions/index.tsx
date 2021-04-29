@@ -56,7 +56,6 @@ const Quiz: React.FC = () => {
     setQuestions(newQuestions);
     console.log(questions.length);
 
-    setScore(0);
     setUserAnswers([]);
     setNumber(0);
     setLoading(false);
@@ -106,7 +105,7 @@ const Quiz: React.FC = () => {
     setModalVisible(true);
   };
 
-  const finishQuiz = useCallback(async () => {
+  const finishQuiz = useCallback(async (score) => {
     // console.log("finishQuiz called");
     try {
       if (!user || !user.id) {
@@ -124,7 +123,7 @@ const Quiz: React.FC = () => {
 
       api.patch("profile/", bodyParameters, config)
       .then(function (response) {
-        console.log('api return:', response);
+        // console.log('api return:', response);
         setModalVisible(false);
         navigation.navigate("Home");
       })
@@ -294,9 +293,7 @@ const Quiz: React.FC = () => {
           </Text>
           <TouchableHighlight
             style={{ ...styles.openButton, backgroundColor: "#EDC951" }}
-            onPress={() => {
-              finishQuiz();
-            }}
+            onPress={() => finishQuiz(score)}
           >
             <Text style={styles.textStyle}>Terminar</Text>
           </TouchableHighlight>
