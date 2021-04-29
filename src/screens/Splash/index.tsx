@@ -20,6 +20,7 @@ const Login = () => {
         <Text style={styles.helloMessage}>Vamos seguir em frente?</Text>
       </View>
       <View style={styles.bottomContainer}>
+      <Image style={styles.logo} resizeMode="center" source={logo} />
         <TouchableOpacity
           style={styles.enterBtn}
           onPress={() => navigation.navigate("Login")}
@@ -29,7 +30,6 @@ const Login = () => {
         <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
           <Text style={styles.createAccountText}>Ainda não tenho conta</Text>
         </TouchableOpacity>
-        <Image style={styles.logo} resizeMode="center" source={logo} />
       </View>
     </View>
   );
