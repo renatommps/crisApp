@@ -287,7 +287,7 @@ const Quiz: React.FC = () => {
         ) :
         <View style={styles.modalView}>
           <Text style={styles.modalText}>
-            Parabéns você terminou o Quiz!
+            Parabéns, você terminou o Quiz!
           </Text>
           <Text style={styles.modalText}>
             Pontuação total: {score}
