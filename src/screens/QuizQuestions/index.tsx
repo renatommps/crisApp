@@ -43,13 +43,11 @@ const Quiz: React.FC = () => {
     setGameOver(false);
 
     const newQuestions = await (await getQuizQuestions())
-      .slice(2)
+      .slice(32)
       .sort(() => (Math.random() > 0.5 ? 1 : -1));
-    // console.log('[startQuiz] newQuestions:', newQuestions);
-    //@ts-ignore
+
     setQuestions(newQuestions);
     console.log(questions.length);
-
     setScore(0);
     setUserAnswers([]);
     setNumber(0);
@@ -85,7 +83,7 @@ const Quiz: React.FC = () => {
         showJustification(questions[number], answerObject);
       }, 800);
     } else {
-      alert("game over!");
+      console.log("game over!");
     }
   };
 

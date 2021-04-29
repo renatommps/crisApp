@@ -398,7 +398,7 @@ export const questions = {
         "Pedestres e ciclistas que desobedeceram as leis de trânsito poderão ser multados?",
       image: "",
       justification:
-        "A regra de trânsito prioriza o pedestre pois é o ente mais vulnerável de todos os envolvidos no trânsito.",
+        "Desde 2018 foi regulamentado o código de trânsito permitindo aplicar multa tanto para pedestres como ciclistas cuja punição estava prevista na lei de trânsito desde 1997.",
 
       incorrect_answers: [
         "Não tem multa para pedestres e ciclistas",
@@ -413,7 +413,7 @@ export const questions = {
       question: "Ciclista pode atravessar a faixa de pedestres?",
       image: "",
       justification:
-        "A regra de trânsito prioriza o pedestre pois é o ente mais vulnerável de todos os envolvidos no trânsito.",
+        " A código de trânsito diz que o ciclista pode atravessar a faixa de pedestres desde que  desmontado e empurrando a bicicleta, o ciclista tem os mesmos direitos e deveres que um pedestre. É só nessa posição que o ciclista pode atravessar a faixa de pedestres ou transitar no passeio",
 
       incorrect_answers: [
         "Nunca. Só os pedestres podem pisar na faixa pois ela é exclusiva",
@@ -421,6 +421,204 @@ export const questions = {
       ],
       correct_answer:
         "Sim. Desde que tenha cuidado pois o pedestre tem prioridade",
+    },
+    {
+      id: "28",
+      category: "CICLISTA",
+      question:
+        "Em um cruzamento, quem tem prioridade de passagem, um ciclista ou um veículo motorizado maior?",
+      image: "",
+      justification:
+        "A ordem é sempre priorizar o mais frágil. Nesse sentido, pedestre em primeiro lugar, depois ciclistas e, por último, veículos motorizados, mas cada um exercendo os seus deveres e respeitando os direitos do outro.",
+
+      incorrect_answers: [
+        "O veículo motorizado, por ser mais rápido, tem prioridade",
+        "A prioridade é do pedestre. O ciclista não tem prioridade alguma",
+      ],
+      correct_answer: "A prioridade é do ciclista. O veículo tem que aguardar",
+    },
+    {
+      id: "29",
+      category: "MOTORISTA",
+      question:
+        "Os veículos têm obrigação de parar para os pedestres atravessarem a rua quando há uma faixa de pedestre, mesmo que não haja semáforo?",
+      image: "",
+      justification:
+        "A preferência ao pedestre não é absoluta, como alguns pensam. Embora exista uma regra de responsabilidade, segundo a qual os condutores de veículos são responsáveis pela segurança dos pedestres (artigo 29, § 2º, do CTB), o próprio Código também prevê as situações em que, efetivamente, os pedestres terão a prioridade de passagem na via: quando estiverem realizando a travessia nas faixas delimitadas para esse fim (as faixas de travessia de pedestres, zebradas ou paralelas, são tipos de marcas transversais, constantes da sinalização horizontal de trânsito, conforme previsão do item 2.2.3.d. do Anexo II do CTB)",
+
+      incorrect_answers: [
+        "Não. Só quando houver semáforo que o veículo tem que parar",
+        "Sempre tem que parar para o pedestre atravessar a rua",
+      ],
+      correct_answer:
+        "Há situações em que os veículos têm obrigação de parar. Em outras não.",
+    },
+    {
+      id: "30",
+      category: "PEDESTRE",
+      question:
+        "O pedestre pode circular em uma ciclovia quando não houver calçada ou a mesma estiver interditada?",
+      image: "",
+      justification:
+        "A ciclovia é uma área que pode ser construída junto à rua, na calçada, e tem SEPARAÇÃO FÍSICA das mesmas. É EXCLUSIVA para deslocamento de bicicletas, não sendo permitido outro tipo de veículo. A ciclovia tem limite de velocidade, 20km/h, e pode ser de duas mãos ou mão única.",
+
+      incorrect_answers: [
+        "Depende da sinalização",
+        "Sim pois não havendo sinalização nem calçada, o uso da ciclovia pelo pedestre está autorizda",
+      ],
+      correct_answer: "Não. As ciclovias são exclusivas dos ciclistas",
+    },
+    {
+      id: "31",
+      category: "GERAL",
+      question: "Bicicletas também são consideradas um veículo ?",
+      image: "",
+      justification:
+        "Por definição, Bicicletas, triciclos, handbikes e outros também são veículos: BICICLETA – veículo de propulsão humana, dotado de duas rodas, não sendo, para efeito deste Código, similar à motocicleta, motoneta e ciclomotor. CICLO – veículo de pelo menos duas rodas a propulsão humana.",
+
+      incorrect_answers: [
+        "Não",
+        "Não sei andar de bicicleta e desconheço a resposta",
+      ],
+      correct_answer: "Sim",
+    },
+    {
+      id: "32",
+      category: "GERAL",
+      question:
+        "Em uma rotatória, tem a preferência de passagem o veículo que?",
+      image: "",
+      justification:
+        "O Código de Trânsito Brasileiro (CTB) diz que o veículo que já está circulando, em tese, terá preferência na rotatória. O artigo 29 do CTB é bem claro: “no caso de rotatória, [tem preferência] aquele que estiver circulando por ela” ",
+
+      incorrect_answers: [
+        "Está a fazer a entrada na rotatória",
+        "Está a esquerda passando para a direita",
+      ],
+      correct_answer: "Está dentro do percurso na rotatória",
+    },
+    {
+      id: "33",
+      category: "GERAL",
+      question:
+        "Em uma rotatória, tem a preferência de passagem o veículo que?",
+      image: "",
+      justification:
+        "Por definição, Bicicletas, triciclos, handbikes e outros também são veículos: BICICLETA – veículo de propulsão humana, dotado de duas rodas, não sendo, para efeito deste Código, similar à motocicleta, motoneta e ciclomotor. CICLO – veículo de pelo menos duas rodas a propulsão humana.",
+
+      incorrect_answers: [
+        "Está a fazer a entrada na rotatória",
+        "Está a esquerda passando para a direita",
+      ],
+      correct_answer: "Está dentro do percurso na rotatória",
+    },
+    {
+      id: "34",
+      category: "GERAL",
+      question:
+        "A velocidade máxima permitida em uma via local sem sinalização é de?",
+      image: "",
+      justification:
+        "Na falta de sinalização, o Código Brasileiro de Trânsito (CTB) estabelece os seguintes limites: - nas vias urbanas (dentro das cidades): 80 km/h nas vias de trânsito rápido, 60 km/h nas vias arteriais, 40 km/h nas vias coletoras e 30 km/h nas vias locais.",
+
+      incorrect_answers: ["110 KM/H", "40 KM/H"],
+      correct_answer: "30 KM/H",
+    },
+    {
+      id: "35",
+      category: "GERAL",
+      question: "É permitido estacionar em ciclovia?",
+      image: "",
+      justification:
+        " É permitida **parada** para embarque e desembarque apenas. Estacionar é proibido por lei.",
+
+      incorrect_answers: [
+        "Sim quando não dá para parar no meio da rua.",
+        "Sim, desde que com o pisca alerta ligado.",
+      ],
+      correct_answer: "Não. É infração sujeita a multa.",
+    },
+    {
+      id: "36",
+      category: "GERAL",
+      question:
+        "Estacionar do lado esquerdo é proibido pelo código de trânsito nacional exceto quando há sinalização que permita. Verdadeiro ou falso?",
+      image: "",
+      justification:
+        "A princípio há motivos para priorizar estacionar do lado direito, como facilidade ao sair por exemplo. Porém, não há no código de trânsito nacional uma restrição explícita. Ainda assim, alguns municípios proíbem, portanto é importante ter atenção.",
+
+      incorrect_answers: ["Verdadeiro"],
+      correct_answer: "Falso",
+    },
+    {
+      id: "35",
+      category: "GERAL",
+      question: "É permitido estacionar em ciclovia?",
+      image: "",
+      justification:
+        " É permitida **parada** para embarque e desembarque apenas. Estacionar é proibido por lei.",
+
+      incorrect_answers: [
+        "Sim quando não dá para parar no meio da rua.",
+        "Sim, desde que com o pisca alerta ligado.",
+      ],
+      correct_answer: "Não. É infração sujeita a multa.",
+    },
+    {
+      id: "36",
+      category: "GERAL",
+      question:
+        "Estacionar do lado esquerdo é proibido pelo código de trânsito nacional exceto quando há sinalização que permita. Verdadeiro ou falso?",
+      image: "",
+      justification:
+        "A princípio há motivos para priorizar estacionar do lado direito, como facilidade ao sair por exemplo. Porém, não há no código de trânsito nacional uma restrição explícita. Ainda assim, alguns municípios proíbem, portanto é importante ter atenção.",
+
+      incorrect_answers: ["Verdadeiro"],
+      correct_answer: "Falso",
+    },
+    {
+      id: "37",
+      category: "MOTORISTA",
+      question: "Pisca alerta deve ser usado quando dar ré?",
+      image: "",
+      justification:
+        "Já existe uma luz que é acionada quando é engatada a marcha ré. O pisca alerta deve ser usado apenas com o carro parado.",
+
+      incorrect_answers: [
+        "Sim pois aumenta a visibilidade e informa que você está fazendo uma manobra.",
+      ],
+      correct_answer:
+        "Não. O pisca deve ser usado apenas quando o carro estiver parado.",
+    },
+    {
+      id: "38",
+      category: "GERAL",
+      question:
+        "Qual a distância mínima entre o carro e a bicicleta no trânsito?",
+      image: "",
+      justification:
+        "O artigo 201 do Código de Trânsito Brasileiro obriga o motorista a passar no mínimo a 1,5 metros de distância de ciclistas que estejam na rua. Essa é uma segurança que os praticantes de bike e pessoas comuns têm para que seu espaço na prática esportiva seja respeitada",
+
+      incorrect_answers: [
+        "3m de cada lado",
+        "Não tem uma distância regulamentada",
+      ],
+      correct_answer: "1,5m ",
+    },
+    {
+      id: "39",
+      category: "CICLISTAS",
+      question: "Como os ciclistas devem se comportar nas vias públicas?",
+      image: "",
+      justification:
+        "No geral, as regras são claras e se estendem a todos. Grandes veículos devem cuidar dos mais frágeis, priorizando os pedestres. Não se deve andar em sentido contrário à via, furar sinal vermelho, ou mudar de faixa de rolamento sem indicar esta intenção – que, no caso do ciclista, em geral, é um aceno com o braço.",
+
+      incorrect_answers: [
+        "Não existe uma regra, o ciclista pode fazer o que quiser no trânsito",
+        "O ciclista só deve obedecer às leis de trânsito se houver ciclovia ou ciclofaixa",
+      ],
+      correct_answer:
+        "Deve seguir a sinalização e as leis de trânsito pois também pode ser advertido com multa",
     },
   ],
 };
