@@ -95,7 +95,8 @@ const Home = () => {
       {!location && <ActivityIndicator size="large" color="#edc951" />}
       {location && (
         <MapView
-          provider={PROVIDER_DEFAULT}
+          provider={null}
+          mapType="none"
           initialRegion={{
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,

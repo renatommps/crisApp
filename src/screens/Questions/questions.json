@@ -262,81 +262,165 @@
     },
     {
       "id": "11",
-      "category": "",
-      "text": "",
+      "category": "CICLISTAS",
+      "text": "O ciclista deve pedalar no mesmo sentido da via ou no sentido contrário?",
       "image": "",
       "isAnswered": false,
-      "justification": "",
+      "justification": "Na faixa de pedestre o ciclista também se torna um pedestre e deve portar como tal",
       "alternatives": [
         {
           "isCorrect": false,
-          "text": ""
+          "text": "No sentido contrário da via para poder ver os carros que vem e assim se livrar de um acidente"
         },
         {
           "isCorrect": false,
-          "text": ""
-        },
-        {
-          "isCorrect": false,
-          "text": ""
+          "text": "Tanto faz se não tiver ciclovia não há regra alguma"
         },
         {
           "isCorrect": true,
-          "text": ""
+          "text": "No sentido da via"
         }
       ]
     },
     {
       "id": "12",
-      "category": "",
-      "text": "",
+      "category": "GERAL",
+      "text": "Se duas motos batem e houve lesões nos dois motociclistas. Os dois têm direito ao DPVAT?",
       "image": "",
       "isAnswered": false,
-      "justification": "",
+      "justification": "O seguro indeniza toda e qualquer lesão causada no trânsito.",
       "alternatives": [
         {
           "isCorrect": false,
-          "text": ""
+          "text": "Não pois o DPVAT só indeniza aquele que estava certo"
         },
         {
           "isCorrect": false,
-          "text": ""
+          "text": "Nenhum. Pois o DPVAT foi eliminado"
         },
         {
           "isCorrect": false,
-          "text": ""
+          "text": "Não é possível responder. É necessário uma perícia antes"
         },
         {
           "isCorrect": true,
-          "text": ""
+          "text": "Ambos têm direito à indenização pelo DPVAT"
         }
       ]
     },
     {
       "id": "13",
-      "category": "",
-      "text": "",
+      "category": "GERAL",
+      "text": "Se houver um sinistro você deve solicitar a indenização do DPVAT onde e em qual órgão?",
+      "image": "",
+      "isAnswered": false,
+      "justification": "Existe um aplicativo voltado para solicitação de indenização por acidentes no trânsito",
+      "alternatives": [
+        {
+          "isCorrect": false,
+          "text": "Na justiça"
+        },
+        {
+          "isCorrect": false,
+          "text": "Você dá entrada na Caixa Econômica Federal"
+        },
+        {
+          "isCorrect": false,
+          "text": "No DETRAN do seu estado"
+        },
+        {
+          "isCorrect": true,
+          "text": "Tudo é feito on-line através de um aplicativo do DPVAT"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "category": "PEDESTRE",
+      "text": "Pense num caso em que uma moto bate em um pedestre gerando uma lesão. Esse pedestre tem direito a solicitar a indenização do DPVAT?",
+      "image": "",
+      "isAnswered": false,
+      "justification": "O seguro indeniza toda e qualquer lesão causada no trânsito e o pedestre tem os mesmos direitos.",
+      "alternatives": [
+        {
+          "isCorrect": false,
+          "text": "É necessário fazer uma perícia para poder verificar se a culpa é do pedestre ou do motociclista"
+        },
+        {
+          "isCorrect": false,
+          "text": "O pedestre não tem direito à indenização pois só os condutores é que"
+        },
+        {
+          "isCorrect": true,
+          "text": "O pedestre terá direito à indenização do DPVAT pois ele está acobertado por esse tipo de sinistro"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "category": "MOTOCICLISTA",
+      "text": "O motociclista usar o capacete com viseira levantada é sujeito a multa ou não?",
+      "image": "15.png",
+      "isAnswered": false,
+      "justification": "Segurança para o motociclista",
+      "alternatives": [
+        {
+          "isCorrect": false,
+          "text": "É necessário fazer uma perícia para poder verificar se a culpa é do pedestre ou do motociclista"
+        },
+        {
+          "isCorrect": false,
+          "text": "O pedestre não tem direito à indenização pois só os condutores é que"
+        },
+        {
+          "isCorrect": true,
+          "text": "O pedestre terá direito à indenização do DPVAT pois ele está acobertado por esse tipo de sinistro"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "category": "MOTOCICLISTA",
+      "text": "Se o motociclista está parado no trânsito, num semáforo por exemplo, ele pode ler suas mensagens ou usar o celular para mexer em algum aplicativo?",
+      "image": "",
+      "isAnswered": false,
+      "justification": "Mesmo parado você perde a atenção ao trânsito caso fique mexendo no seu aparelho celular",
+      "alternatives": [
+        {
+          "isCorrect": false,
+          "text": "Isso depende da avaliação do fiscal do trânsito"
+        },
+        {
+          "isCorrect": false,
+          "text": "Pode usar normalmente pois como está parado, não está correndo riscos"
+        },
+        {
+          "isCorrect": true,
+          "text": "Não é permitido usar o celular quando se está dirigindo, mesmo parado no trânsito"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "category": "MOTOCICLISTA",
+      "text": "Mesmo parado você perde a atenção ao trânsito caso fique mexendo no seu aparelho celular ",
       "image": "",
       "isAnswered": false,
       "justification": "",
       "alternatives": [
         {
           "isCorrect": false,
-          "text": ""
+          "text": "Isso depende da avaliação do fiscal do trânsito"
         },
         {
           "isCorrect": false,
-          "text": ""
-        },
-        {
-          "isCorrect": false,
-          "text": ""
+          "text": "Pode usar normalmente pois como está parado, não está correndo riscos"
         },
         {
           "isCorrect": true,
-          "text": ""
+          "text": "Não é permitido usar o celular quando se está dirigindo, mesmo parado no trânsito"
         }
       ]
-    },
+    }
   ]
 }
