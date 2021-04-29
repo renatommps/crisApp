@@ -95,7 +95,8 @@ const Home = () => {
       {!location && <ActivityIndicator size="large" color="#edc951" />}
       {location && (
         <MapView
-          provider={PROVIDER_DEFAULT}
+          provider={null}
+          mapType="none"
           initialRegion={{
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
@@ -134,8 +135,8 @@ const Home = () => {
                     latitude: acidente.latitude,
                     longitude: acidente.longitude,
                   }}
-                  title="Local com ocorrência de acidente"
-                  description={"Redobre a atenção por aqui e, se possível, troque de rota!"}
+                  title="Acidente!"
+                  description={acidente.descricao}
                 >
                   <IconButton icon={"alert"} color={Colors.red700} size={30} />
                 </Marker>

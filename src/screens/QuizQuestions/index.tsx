@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, Image, Alert, StyleSheet, TouchableHighlight, Modal } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Alert,
+  StyleSheet,
+  TouchableHighlight,
+  Modal,
+} from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 import Questions from "../../components/Questions";
@@ -23,7 +31,10 @@ const Quiz: React.FC = () => {
   const [TOTAL_QUESTIONS] = useState(10);
   const [number, setNumber] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalData, setModalData] = useState<any>({isCorrect: false, justification: ''});
+  const [modalData, setModalData] = useState<any>({
+    isCorrect: false,
+    justification: "",
+  });
   const setAnswer = useRef(null);
 
   const startQuiz = async () => {
@@ -31,9 +42,14 @@ const Quiz: React.FC = () => {
     setLoading(true);
     setGameOver(false);
 
-    const newQuestions = await getQuizQuestions();
+    const newQuestions = await (await getQuizQuestions())
+      .slice(2)
+      .sort(() => (Math.random() > 0.5 ? 1 : -1));
     // console.log('[startQuiz] newQuestions:', newQuestions);
+    //@ts-ignore
     setQuestions(newQuestions);
+    console.log(questions.length);
+
     setScore(0);
     setUserAnswers([]);
     setNumber(0);
@@ -44,7 +60,6 @@ const Quiz: React.FC = () => {
     // console.log('[useEffect] will start quiz');
     startQuiz();
   }, []);
-
 
   const checkAnswer = () => {
     const answer = setAnswer.current;
@@ -70,13 +85,16 @@ const Quiz: React.FC = () => {
         showJustification(questions[number], answerObject);
       }, 800);
     } else {
-      console.log('game over!');
+      alert("game over!");
     }
   };
 
   const showJustification = (question: any, answer: any) => {
     // console.log('[showJustification] question:', question, ', answer:', answer);
-    setModalData({isCorrect: answer.correct, justification: question.justification});
+    setModalData({
+      isCorrect: answer.correct,
+      justification: question.justification,
+    });
     setModalVisible(true);
   };
 
@@ -206,20 +224,19 @@ const Quiz: React.FC = () => {
           )}
         </TouchableWithoutFeedback>
       </View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        >
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Resposta {modalData.isCorrect ? 'correta!' : 'incorreta!'}</Text>
+            <Text style={styles.modalText}>
+              Resposta {modalData.isCorrect ? "correta!" : "incorreta!"}
+            </Text>
             <Text style={styles.modalText}>{modalData.justification}</Text>
             <TouchableHighlight
-              style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
+              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
               onPress={() => {
-                nextQuestion()
-              }}>
+                nextQuestion();
+              }}
+            >
               <Text style={styles.textStyle}>Continuar</Text>
             </TouchableHighlight>
           </View>
@@ -232,17 +249,17 @@ const Quiz: React.FC = () => {
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 22,
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -252,19 +269,19 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   openButton: {
-    backgroundColor: '#F194FF',
+    backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
     elevation: 2,
   },
   textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
 

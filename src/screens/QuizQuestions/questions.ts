@@ -21,9 +21,7 @@ export const questions = {
       question:
         "É permitido participar de corridas não autorizadas pela autoridade competente em vias públicas?",
       correct_answer: "Não",
-      justification:
-        "Segundo o Art. 308 do Código de Trânsito Brasileiro, é proibido participar de corridas não autorizadas pela autoridade competente em vias públicas, ocasionando detenção de 6 meses a 2 anos, multa e suspensão ou proibição de se obter a habilitação para dirigir."
-      ,incorrect_answers: [
+      incorrect_answers: [
         "Sim",
         "Desde que use capacete",
         "Desde que a velocidade não passe de 200km/h",
@@ -141,6 +139,288 @@ export const questions = {
         "O pedestre pode atravessar a via.",
         "O pedestre está com calor",
       ],
+    },
+    {
+      id: "11",
+      category: "CICLISTAS",
+      question:
+        "O ciclista deve pedalar no mesmo sentido da via ou no sentido contrário?",
+      image: "",
+      justification:
+        "Você andar no mesmo sentido da via é mais seguro e está cientificamente provado que é melhor que na contra-via.",
+
+      incorrect_answers: [
+        "No sentido contrário da via para poder ver os carros que vem e assim se livrar de um acidente",
+        "Tanto faz se não tiver ciclovia não há regra alguma",
+      ],
+
+      correct_answer: "No sentido da via",
+    },
+    {
+      id: "11",
+      category: "CICLISTAS",
+      question:
+        "O ciclista deve pedalar no mesmo sentido da via ou no sentido contrário?",
+      image: "",
+      justification:
+        "Você andar no mesmo sentido da via é mais seguro e está cientificamente provado que é melhor que na contra-via.",
+
+      incorrect_answers: [
+        "No sentido contrário da via para poder ver os carros que vem e assim se livrar de um acidente",
+        "Tanto faz se não tiver ciclovia não há regra alguma",
+      ],
+      correct_answer: "No sentido da via",
+    },
+    {
+      id: "12",
+      category: "CICLISTAS",
+      question:
+        "Quando o sinal de pedestre abre e o ciclista vai atravessar a via, o ciclista pode subir na bicicleta ou deve empurrá-la?",
+      image: "",
+      justification:
+        "Na faixa de pedestre o ciclista também se torna um pedestre e deve portar como tal",
+
+      incorrect_answers: [
+        "O ciclista deve subir na bike e passar o mais rápido possível",
+        "O ciclista deve esperar que todos os pedestres passem para só após subir na bike",
+      ],
+      correct_answer: "O ciclista deve descer da bike e empurrá-la",
+    },
+    {
+      id: "13",
+      category: "MOTOCICLISTA",
+      question:
+        "Se duas motos batem e houve lesões nos dois motociclistas. Os dois têm direito ao DPVAT?",
+      image: "",
+      justification:
+        "O seguro indeniza toda e qualquer lesão causada no trânsito.",
+
+      incorrect_answers: [
+        "Não pois o DPVAT só indeniza aquele que estava certo",
+        "Nenhum. Pois o DPVAT foi eliminado pelo Governo Federal",
+        "Não é possível responder. É necessário uma perícia antes",
+      ],
+      correct_answer: "Ambos têm direito à indenização pelo DPVAT",
+    },
+    {
+      id: "14",
+      category: "GERAL",
+      question:
+        "Se houver um sinistro você deve solicitar a indenização do DPVAT onde e em qual órgão?",
+      image:
+        "https://www.contabeis.com.br/assets/img/news/n_41384_ae9962652ca72b43b47d23ca1a088f74.jpg",
+      justification:
+        "Existe um aplicativo voltado para solicitação de indenização por acidentes no trânsito",
+
+      incorrect_answers: [
+        "No DETRAN do seu estado",
+        "Você dá entrada na Caixa Econômica Federal",
+        "Na justiça",
+      ],
+      correct_answer: "Tudo é feito on-line através de um aplicativo do DPVAT",
+    },
+    {
+      id: "15",
+      category: "GERAL",
+      question:
+        "Pense num caso em que uma moto bate em um pedestre gerando uma lesão. Esse pedestre tem direito a solicitar a indenização do DPVAT?",
+      image:
+        "https://www.contabeis.com.br/assets/img/news/n_41384_ae9962652ca72b43b47d23ca1a088f74.jpg",
+      justification:
+        "O seguro indeniza toda e qualquer lesão causada no trânsito e o pedestre tem os mesmos direitos.",
+
+      incorrect_answers: [
+        "É necessário fazer uma perícia para poder verificar se a culpa é do pedestre ou do motociclista",
+        "O pedestre não tem direito à indenização pois só os condutores é que pagam o IPVA e o seguro obrigatório",
+      ],
+      correct_answer:
+        "O pedestre terá direito à indenização do DPVAT pois ele está acobertado por esse tipo de sinistro",
+    },
+    {
+      id: "16",
+      category: "MOTOCICLISTA",
+      question:
+        "O motociclista usar o capacete com viseira levantada é sujeito a multa ou não?",
+      image:
+        "https://www.contabeis.com.br/assets/img/news/n_41384_ae9962652ca72b43b47d23ca1a088f74.jpg",
+      justification: "Segurança para o motociclista",
+
+      incorrect_answers: [
+        "Não dá multa. Isso é lenda urbana",
+        "Alguns modelos de capacete permite andar com a viseira levantada",
+      ],
+      correct_answer: "É sujeito à multa sim. A viseira tem que estar fechada",
+    },
+    {
+      id: "17",
+      category: "MOTOCICLISTA",
+      question:
+        "Se o motociclista está parado no trânsito, num semáforo por exemplo, ele pode ler suas mensagens ou usar o celular para mexer em algum aplicativo?",
+      image: "",
+      justification:
+        "Mesmo parado você perde a atenção ao trânsito caso fique mexendo no seu aparelho celular ",
+
+      incorrect_answers: [
+        "Pode usar normalmente pois como está parado, não está correndo riscos",
+        "Isso depende da avaliação do fiscal do trânsito",
+      ],
+      correct_answer:
+        "Não é permitido usar o celular quando se está dirigindo, mesmo parado no trânsito",
+    },
+    {
+      id: "18",
+      category: "GERAL",
+      question:
+        "Numa via que cruza uma ciclofaixa, a prioridade é do veículo ou do ciclista?",
+      image: "",
+      justification: "A prioridade sempre será do ente mais vulnerável",
+
+      incorrect_answers: [
+        "Do veículo pois ele sempre anda mais rápido",
+        "Ambos (carro, moto e ciclista) têm que parar para observar se está livre",
+      ],
+      correct_answer: "Do ciclista pois ele é o mais vulnerável",
+    },
+    {
+      id: "19",
+      category: "CICLISTA",
+      question:
+        "Quando a via não possui ciclovia ou ciclofaixa, é permitido ao ciclista trafegar na calçada?",
+      image: "",
+      justification: "As calçadas são exclusivas para pedestres",
+
+      incorrect_answers: [
+        "Sim pois o ciclista presta atenção no pedestre",
+        "Tanto faz. Ele pode subir algumas vezes e descer em outras",
+      ],
+      correct_answer: "Não é permitido aos ciclistas andar nas calçadas",
+    },
+    {
+      id: "20",
+      category: "GERAL",
+      question:
+        "Se a pessoa não estiver em dia com o licenciamento do veículo e houver um sinistro, ele tem direito à indenização do DPVAT?",
+      image: "",
+      justification:
+        "Por ser obrigatório, pode ser cobrado a qualquer momento pelo órgão responsável pela arrecadação",
+
+      incorrect_answers: [
+        "Se não tiver pago, não tem direito à indenização",
+        "Tem direito, mas só a uma parte da indenização",
+      ],
+      correct_answer:
+        "Tem direito a indenização totalmente, independentemente de ter pago ou não.",
+    },
+    {
+      id: "21",
+      category: "MOTORISTA",
+      question:
+        "Para você levar um animal no seu veículo, é obrigatório a utilização de cadeira especial para PET ou não tem necessidade?",
+      image: "",
+      justification:
+        "A utilização de cintos e cadeiras já está mais que provado que salva vidas não só de quem as usa, mas também dos demais tripulantes",
+
+      incorrect_answers: [
+        "Depende do tipo do animal e do seu porte",
+        "Não. Esse acessório é livre. Usa quem quiser",
+        "Não existe legislação que trate sobre condução de animais",
+      ],
+      correct_answer:
+        "Sim. Um animal de qualquer porte não pode ficar solto nem no colo de algum passageiro",
+    },
+    {
+      id: "22",
+      category: "MOTORISTA",
+      question:
+        "Para você levar um animal no seu veículo, é obrigatório a utilização de cadeira especial para PET ou não tem necessidade?",
+      image: "",
+      justification:
+        "Por ser obrigatório, pode ser cobrado a qualquer momento pelo órgão responsável pela arrecadação",
+
+      incorrect_answers: [
+        "Depende do tipo do animal e do seu porte",
+        "Não. Esse acessório é livre. Usa quem quiser",
+        "Não existe legislação que trate sobre condução de animais",
+      ],
+      correct_answer:
+        "Sim. Um animal de qualquer porte não pode ficar solto nem no colo de algum passageiro",
+    },
+    {
+      id: "23",
+      category: "CICLISTA",
+      question: "Qual a diferença entre ciclovias e ciclofaixas?",
+      image: "",
+      justification:
+        "As ciclovias são construídas para proteger ainda mais os ciclistas.",
+
+      incorrect_answers: [
+        "Ciclovias e ciclofaixas são a mesma coisa. São sinônimos.",
+        "Ciclovias são ruas totalmente voltadas para ciclistas e ciclofaixas são faixas voltadas apenas para ciclistas",
+      ],
+      correct_answer:
+        "Ciclovias têm a separação física (cones, cavaletes, gelo baiano, etc) e ciclofaixas são apenas faixas pintadas no asfalto",
+    },
+    {
+      id: "24",
+      category: "CICLISTA",
+      question: "Ciclovias são mais seguras que ciclofaixas?",
+      image: "",
+      justification:
+        "As ciclovias são construídas para proteger ainda mais os ciclistas.",
+
+      incorrect_answers: [
+        "Não há diferença de segurança. Tanto uma como outra são 100% seguras",
+        "As ciclofaixas são mais seguras pois muitos ciclistas batem nas separações que são os cones, cavaletes, gelos baianos, etc e essas batidas causam bastante ferimentos",
+      ],
+      correct_answer:
+        "Apesar das ciclofaixas também proteger o ciclista dos veículos, as ciclofaixas mantém uma distância infinitamente mais seguras para os ciclistas.",
+    },
+    {
+      id: "25",
+      category: "CICLISTA",
+      question:
+        "Qual deve ser a conduta correta do ciclista diante da permanência de um transeunte à pé na ciclofaixa?",
+      image: "",
+      justification:
+        "A regra de trânsito prioriza o pedestre pois é o ente mais vulnerável de todos os envolvidos no trânsito.",
+
+      incorrect_answers: [
+        "O ciclista pode tranquilamente atropelar o pedestre pois na ciclofaixa a prioridade é do ciclista",
+        "Se o ciclista quiser, pode solicitar para um guarda de trânsito multar e prender o pedestre",
+      ],
+      correct_answer: "O ciclista deve parar e esperar o pedestre passar.",
+    },
+
+    {
+      id: "26",
+      category: "CICLISTA",
+      question:
+        "Pedestres e ciclistas que desobedeceram as leis de trânsito poderão ser multados?",
+      image: "",
+      justification:
+        "A regra de trânsito prioriza o pedestre pois é o ente mais vulnerável de todos os envolvidos no trânsito.",
+
+      incorrect_answers: [
+        "Não tem multa para pedestres e ciclistas",
+        "Só os ciclistas podem ser multados",
+      ],
+      correct_answer:
+        "Tanto pedestres como ciclistas podem ser multados. A lei de trânsito vale para ambos, inclusive o ciclista pode ter sua bicicleta recolhida",
+    },
+    {
+      id: "27",
+      category: "CICLISTA",
+      question: "Ciclista pode atravessar a faixa de pedestres?",
+      image: "",
+      justification:
+        "A regra de trânsito prioriza o pedestre pois é o ente mais vulnerável de todos os envolvidos no trânsito.",
+
+      incorrect_answers: [
+        "Nunca. Só os pedestres podem pisar na faixa pois ela é exclusiva",
+        "Às vezes pode, às vezes não pode. Depende se houver ou não sinalização",
+      ],
+      correct_answer:
+        "Sim. Desde que tenha cuidado pois o pedestre tem prioridade",
     },
   ],
 };
