@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View, Text } from "react-native";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { UrlTile } from "react-native-maps";
@@ -19,26 +19,26 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      // const { status } = await Location.requestPermissionsAsync();
-      // if (status !== "granted") {
-      //   setErrorMsg("Permission to access location was denied");
-      //   return;
-      // }
-      // const location = await Location.getCurrentPositionAsync({});
+      const { status } = await Location.requestPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+      const location = await Location.getCurrentPositionAsync({});
 
       // Recife location.
-      const location = {
-        coords: {
-          latitude: -8.05941514041652,
-          longitude: -34.90712403164804,
-          altitude: null,
-          accuracy: null,
-          altitudeAccuracy: null,
-          heading: null,
-          speed: null,
-        },
-        timestamp: Date.now(),
-      };
+      // const location = {
+      //   coords: {
+      //     latitude: -8.05941514041652,
+      //     longitude: -34.90712403164804,
+      //     altitude: null,
+      //     accuracy: null,
+      //     altitudeAccuracy: null,
+      //     heading: null,
+      //     speed: null,
+      //   },
+      //   timestamp: Date.now(),
+      // };
       setLocation(location);
     })();
   }, []);
@@ -144,6 +144,11 @@ const Home = () => {
             })}
         </MapView>
       )}
+      <View style={styles.mapLabelContainer}>
+        <Text style={styles.mapLabel} >
+        Mapa de calor de ocorrência de acidentes
+        </Text>
+      </View>
       <IconButton
         icon={trafficView ? "road-variant" : "car-multiple"}
         style={styles.trafficIcon}
