@@ -4,7 +4,8 @@ import { RectButton } from "react-native-gesture-handler";
 import { elevate } from "react-native-elevate";
 const styles = StyleSheet.create({
   container: {
-    height: 60,
+    minHeight: 80,
+    height: 'auto',
     width: "100%",
     alignItems: "center",
     flexDirection: "row",
@@ -15,9 +16,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    textAlign: "center",
+    textAlign: "left",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     color: "#000",
   },
 });

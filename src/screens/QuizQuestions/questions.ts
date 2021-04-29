@@ -21,7 +21,9 @@ export const questions = {
       question:
         "É permitido participar de corridas não autorizadas pela autoridade competente em vias públicas?",
       correct_answer: "Não",
-      incorrect_answers: [
+      justification:
+        "Segundo o Art. 308 do Código de Trânsito Brasileiro, é proibido participar de corridas não autorizadas pela autoridade competente em vias públicas, ocasionando detenção de 6 meses a 2 anos, multa e suspensão ou proibição de se obter a habilitação para dirigir."
+      ,incorrect_answers: [
         "Sim",
         "Desde que use capacete",
         "Desde que a velocidade não passe de 200km/h",

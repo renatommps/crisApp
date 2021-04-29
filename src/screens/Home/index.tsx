@@ -135,8 +135,8 @@ const Home = () => {
                     latitude: acidente.latitude,
                     longitude: acidente.longitude,
                   }}
-                  title="Acidente!"
-                  description={acidente.descricao}
+                  title="Local com ocorrência de acidente"
+                  description={"Redobre a atenção por aqui e, se possível, troque de rota!"}
                 >
                   <IconButton icon={"alert"} color={Colors.red700} size={30} />
                 </Marker>
