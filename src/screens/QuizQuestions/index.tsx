@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   View,
   Text,
   Image,
-  Alert,
   StyleSheet,
   TouchableHighlight,
   Modal,
@@ -14,6 +13,9 @@ import Questions from "../../components/Questions";
 import Answers from "../../components/Answers";
 import { getQuizQuestions, QuestionsState } from "../../utils/utils";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import api from "../../utils/api";
+import { useAuth } from "../../hooks/auth";
+import { useNavigation } from "@react-navigation/native";
 
 export type AnswerObject = {
   question: string;
@@ -34,11 +36,13 @@ const Quiz: React.FC = () => {
   const [modalData, setModalData] = useState<any>({
     isCorrect: false,
     justification: "",
+    finished: false,
   });
+  const { token, user } = useAuth();
+  const navigation = useNavigation();
   const setAnswer = useRef(null);
 
   const startQuiz = async () => {
-    // console.log('[startQuiz] start quiz called.');
     setLoading(true);
     setGameOver(false);
 
@@ -46,8 +50,9 @@ const Quiz: React.FC = () => {
       .slice(32)
       .sort(() => (Math.random() > 0.5 ? 1 : -1));
 
+    //@ts-ignore
     setQuestions(newQuestions);
-    console.log(questions.length);
+
     setScore(0);
     setUserAnswers([]);
     setNumber(0);
@@ -55,54 +60,90 @@ const Quiz: React.FC = () => {
   };
 
   useEffect(() => {
-    // console.log('[useEffect] will start quiz');
     startQuiz();
   }, []);
 
   const checkAnswer = () => {
     const answer = setAnswer.current;
     const correct = questions[number].correct_answer === answer;
-    // console.log('[checkAnswer] number:', number, ', gameover:', gameOver, ', score:', score, ', correct:', correct, ', answer:', answer);
 
-    if (!gameOver) {
-      const answerObject = {
-        question: questions[number].question,
-        answer,
-        correct,
-        correctAnswer: questions[number].correct_answer,
-      };
+    const answerObject = {
+      question: questions[number].question,
+      answer,
+      correct,
+      correctAnswer: questions[number].correct_answer,
+    };
 
-      //@ts-ignore
-      setUserAnswers((prev) => [...prev, answerObject]);
+    //@ts-ignore
+    setUserAnswers((prev) => [...prev, answerObject]);
 
-      if (correct) {
-        setScore((prev) => prev + 1);
-      }
-
-      setTimeout(() => {
-        showJustification(questions[number], answerObject);
-      }, 800);
-    } else {
-      console.log("game over!");
+    if (correct) {
+      setScore((prev) => prev + 1);
     }
+
+    showJustification(questions[number], answerObject);
   };
 
   const showJustification = (question: any, answer: any) => {
-    // console.log('[showJustification] question:', question, ', answer:', answer);
     setModalData({
       isCorrect: answer.correct,
       justification: question.justification,
+      finished: false,
     });
     setModalVisible(true);
   };
 
+  const showFinizQuizModal = () => {
+    setModalData({
+      finished: true,
+    });
+    setModalVisible(true);
+  };
+
+  const finishQuiz = useCallback(async () => {
+    try {
+      if (!user || !user.id) {
+        setModalVisible(false);
+        navigation.navigate("Home");
+      }
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const bodyParameters = {
+        id: user.id,
+        pontuation: score,
+      };
+
+      api
+        .patch("profile/", bodyParameters, config)
+        .then(function (response) {
+          console.log("api return:", response);
+          setModalVisible(false);
+          navigation.navigate("Home");
+        })
+        .catch(function (error) {
+          console.log("error calling api:", error);
+          setModalVisible(false);
+          navigation.navigate("Home");
+        });
+    } catch (ex) {
+      console.log("Could not patch user profile.", ex);
+      setModalVisible(false);
+      navigation.navigate("Home");
+    }
+  }, []);
+
   const nextQuestion = () => {
     setModalVisible(false);
     const nextQ = number + 1;
-    if (nextQ === TOTAL_QUESTIONS) {
-      setGameOver(true);
-    } else {
+
+    if (nextQ < TOTAL_QUESTIONS) {
+      setModalVisible(false);
       setNumber(nextQ);
+    } else {
+      setGameOver(true);
+      showFinizQuizModal();
     }
   };
 
@@ -224,20 +265,35 @@ const Quiz: React.FC = () => {
       </View>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>
-              Resposta {modalData.isCorrect ? "correta!" : "incorreta!"}
-            </Text>
-            <Text style={styles.modalText}>{modalData.justification}</Text>
-            <TouchableHighlight
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-              onPress={() => {
-                nextQuestion();
-              }}
-            >
-              <Text style={styles.textStyle}>Continuar</Text>
-            </TouchableHighlight>
-          </View>
+          {!modalData.finished ? (
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                Resposta {modalData.isCorrect ? "correta!" : "incorreta!"}
+              </Text>
+              <Text style={styles.modalText}>{modalData.justification}</Text>
+              <TouchableHighlight
+                style={{ ...styles.openButton, backgroundColor: "#EDC951" }}
+                onPress={nextQuestion}
+              >
+                <Text style={styles.textStyle}>Continuar</Text>
+              </TouchableHighlight>
+            </View>
+          ) : (
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                Parabéns, você terminou o Quiz!
+              </Text>
+              <Text style={styles.modalText}>Pontuação total: {score}</Text>
+              <TouchableHighlight
+                style={{ ...styles.openButton, backgroundColor: "#EDC951" }}
+                onPress={() => {
+                  finishQuiz();
+                }}
+              >
+                <Text style={styles.textStyle}>Terminar</Text>
+              </TouchableHighlight>
+            </View>
+          )}
         </View>
       </Modal>
     </View>
