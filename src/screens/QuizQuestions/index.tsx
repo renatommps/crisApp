@@ -3,10 +3,9 @@ import {
   View,
   Text,
   Image,
-  Alert,
   StyleSheet,
   TouchableHighlight,
-  Modal
+  Modal,
 } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
@@ -37,24 +36,22 @@ const Quiz: React.FC = () => {
   const [modalData, setModalData] = useState<any>({
     isCorrect: false,
     justification: "",
-    finished: false
+    finished: false,
   });
   const { token, user } = useAuth();
   const navigation = useNavigation();
   const setAnswer = useRef(null);
 
   const startQuiz = async () => {
-    // console.log('[startQuiz] start quiz called.');
     setLoading(true);
     setGameOver(false);
 
     const newQuestions = await (await getQuizQuestions())
-      .slice(2)
+      .slice(32)
       .sort(() => (Math.random() > 0.5 ? 1 : -1));
 
-      //@ts-ignore
+    //@ts-ignore
     setQuestions(newQuestions);
-    console.log(questions.length);
 
     setUserAnswers([]);
     setNumber(0);
@@ -62,7 +59,6 @@ const Quiz: React.FC = () => {
   };
 
   useEffect(() => {
-    // console.log('[useEffect] will start quiz');
     startQuiz();
   }, []);
 
@@ -88,19 +84,17 @@ const Quiz: React.FC = () => {
   };
 
   const showJustification = (question: any, answer: any) => {
-    // console.log('[showJustification] question:', question, ', answer:', answer);
     setModalData({
       isCorrect: answer.correct,
       justification: question.justification,
-      finished: false
+      finished: false,
     });
     setModalVisible(true);
   };
 
   const showFinizQuizModal = () => {
-    // console.log('[showFinizQuizModal]');
     setModalData({
-      finished: true
+      finished: true,
     });
     setModalVisible(true);
   };
@@ -114,11 +108,11 @@ const Quiz: React.FC = () => {
       }
 
       const config = {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       };
       const bodyParameters = {
         id: user.id,
-        pontuation: score
+        pontuation: score,
       };
 
       api.patch("profile/", bodyParameters, config)
