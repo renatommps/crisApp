@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, View, Text } from "react-native";
+import { Alert, ActivityIndicator, View, Text } from "react-native";
 import { styles } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 import { UrlTile } from "react-native-maps";
 import { Heatmap, Marker, PROVIDER_DEFAULT } from "react-native-maps";
 import MapView from "react-native-map-clustering";
@@ -9,19 +8,17 @@ import { IconButton, Colors } from "react-native-paper";
 import * as Location from "expo-location";
 
 const Home = () => {
-  const navigation = useNavigation();
   const [trafficView, setTrafficView] = useState<boolean>(false);
   const [location, setLocation] = useState<Location.LocationObject | null>(
     null
   );
   const [acidentes, setAcidentes] = useState<any[]>([]);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
-      const { status } = await Location.requestPermissionsAsync();
+      const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
+        Alert.alert("Permissão para acessar a localização negada!");
         return;
       }
       const location = await Location.getCurrentPositionAsync({});
@@ -43,24 +40,6 @@ const Home = () => {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       let result = await Location.geocodeAsync("EST DOS REMEDIOS, 2328, MADALENA");
-  //       console.log('results:', result);
-  //       setAccident( result[0] );
-  //     } catch (e) {
-  //       console.log("Errror getting accident location: " + e.message);
-  //       setErrorMsg("Errror getting accident location: " + e.message);
-  //       return;
-  //     }
-  //   })();
-  // }, []);
-
-  // const toggleMapTrafficView = () => {
-  //   ...
-  // }
-
   useEffect(() => {
     (async () => {
       try {
@@ -70,11 +49,10 @@ const Home = () => {
             if (Array.isArray(json)) setAcidentes(json.slice(100));
           })
           .catch((error) => {
-            setErrorMsg("Errror getting accident location: " + error.message);
+            console.log("Errror getting accident location: " + error.message);
           });
       } catch (e) {
         console.log("Errror getting accident location: " + e.message);
-        setErrorMsg("Errror getting accident location: " + e.message);
         return;
       }
     })();
