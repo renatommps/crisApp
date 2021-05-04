@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   topContainer: {
-    flex: 4,
+    flex: 5,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -19,6 +19,26 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     alignSelf: 'stretch'
+  },
+  avatar: {
+    marginTop: 15,
+    marginBottom: 6,
+    backgroundColor: "#EDC951"
+  },
+  btnUpdateAvatar: {
+    width: "auto",
+    backgroundColor: "#EDC951",
+    borderRadius: 50,
+    height: "auto",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    marginBottom: 20
+  },
+  btnUpdateAvatarText: {
+    color: "white",
+    fontSize: 17
   },
   pontuationText: {
     color: "#EDC951",
