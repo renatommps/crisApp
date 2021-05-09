@@ -1,13 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Image } from "react-native";
-import BottomTabNavigator from "./tabNavigator";
-import Splash from "../screens/Splash";
-import Login from "../screens/Login";
+
+import HomeMenu from "../screens/HomeMenu";
+import Profile from "../screens/Profile";
+import Home from "../screens/Home";
 import Quiz from "../screens/Quiz";
 import QuizQuestions from "../screens/QuizQuestions";
 import KnowledgeArea from "../screens/KnowledgeArea";
-import SignUp from "../screens/SignUp";
 
 const Stack = createStackNavigator();
 
@@ -25,11 +24,13 @@ const MainStackNavigator = () => {
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen
         name="Home"
-        component={BottomTabNavigator}
+        component={HomeMenu}
         options={{
           headerTransparent: true,
         }}
       />
+      <Stack.Screen name="Profile" component={Profile}></Stack.Screen>
+      <Stack.Screen name="Map" component={Home}></Stack.Screen>
       <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="QuizQuestions" component={QuizQuestions} />
       <Stack.Screen name="KnowledgeArea" component={KnowledgeArea} />

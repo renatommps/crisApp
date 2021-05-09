@@ -5,8 +5,7 @@ import { styles } from "./styles";
 import logo from "../../assets/logo.png";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  
   const navigation = useNavigation();
 
   return (
