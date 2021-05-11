@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Alert, ActivityIndicator, Modal, View, Text, TouchableHighlight } from "react-native";
+import {
+  Alert,
+  ActivityIndicator,
+  Modal,
+  View,
+  Text,
+  TouchableHighlight,
+} from "react-native";
 import { styles } from "./styles";
 import { UrlTile } from "react-native-maps";
 import { Heatmap, Marker } from "react-native-maps";
@@ -8,36 +15,40 @@ import { IconButton, Colors } from "react-native-paper";
 import * as Location from "expo-location";
 
 type Accident = {
-  data: string,
-  date: Date,
-  descrivao?: string,
-  detalhes?: string,
-  id: string,
-  latitude: string,
-  longitude: string
+  data: string;
+  date: Date;
+  descrivao?: string;
+  detalhes?: string;
+  id: string;
+  latitude: string;
+  longitude: string;
 };
 
 const MAX_ACCIDENTS_VALUE: number = 100;
 
 const Home = () => {
   const [trafficView, setTrafficView] = useState<boolean>(false);
-  const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const [location, setLocation] =
+    useState<Location.LocationObject | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [accidents, setAccidents] = useState<Accident[]>([]);
   const [filteredAccidents, setFilteredAccidents] = useState<Accident[]>([]);
   const [filterText, setFilterText] = useState<string>("all");
   const [filterValue, setFilterValue] = useState<number | null>(null);
+  const [permission, setPermission] = useState<boolean>(false);
 
   // This will filter the accidentes when the filter value change.
   useEffect(() => {
     (async () => {
-      let newFilteredAccidents: Accident[] = JSON.parse(JSON.stringify(accidents));
+      let newFilteredAccidents: Accident[] = JSON.parse(
+        JSON.stringify(accidents)
+      );
 
       if (filterValue == null) {
         // We allow at most 100 accidents (for performance reasons)
         setFilteredAccidents(newFilteredAccidents);
         return;
-      };
+      }
 
       const endDate: Date = new Date();
       endDate.setHours(0, 0, 0, 0);
@@ -53,7 +64,8 @@ const Home = () => {
         if (startDate.getTime() > endDate.getTime()) return false;
 
         // get total seconds between the times
-        const timeDiffInSeconds: number = ((endDate.getTime() - startDate.getTime()) / 1000);
+        const timeDiffInSeconds: number =
+          (endDate.getTime() - startDate.getTime()) / 1000;
 
         // calculate number of whole days. OBS: 86400 is the amount of seconds in one day.
         const daysPassed = Math.floor(timeDiffInSeconds / 86400);
@@ -71,11 +83,12 @@ const Home = () => {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
+        setPermission(false);
         Alert.alert("Permissão para acessar a localização negada!");
         return;
       }
       const location = await Location.getCurrentPositionAsync({});
-
+      setPermission(true);
       // Recife location.
       // const location = {
       //   coords: {
@@ -103,7 +116,7 @@ const Home = () => {
             if (!Array.isArray(json)) return;
 
             // Filter all accidentes that has no "data".
-            let accidents = json.filter(accident => accident.data != null);
+            let accidents = json.filter((accident) => accident.data != null);
 
             // acidentes para testes
             // accidents.push({
@@ -128,14 +141,20 @@ const Home = () => {
               const stringDate: string | undefined = accident.data;
 
               // convert string date to array of number.
-              const splitedDate: number[] = stringDate.split('/').map((date: string) => Number.parseInt(date));
+              const splitedDate: number[] = stringDate
+                .split("/")
+                .map((date: string) => Number.parseInt(date));
 
               // create a date passing on the constructor yyyy, mm - 1, dd.
-              const date: Date = new Date(splitedDate[2], splitedDate[1] - 1, splitedDate[0]);
+              const date: Date = new Date(
+                splitedDate[2],
+                splitedDate[1] - 1,
+                splitedDate[0]
+              );
               date.setHours(0, 0, 0, 0);
 
               // save the date on the accident object.
-              accident['date'] = date;
+              accident["date"] = date;
             });
 
             // Sorte the accidents descending by Date.
@@ -175,15 +194,16 @@ const Home = () => {
   };
 
   const filterAccidents = (text: string, value: number | null) => {
-    console.log('filter accidentes called. text:', text, ', value:', value);
+    console.log("filter accidentes called. text:", text, ", value:", value);
     setFilterText(text);
     setFilterValue(value);
   };
 
   return (
     <View style={styles.container}>
-      {!location && <ActivityIndicator size="large" color="#edc951" />}
-      {location && (
+      {!permission && <ActivityIndicator size="large" color="#edc951" />}
+
+      {location && permission ? (
         <MapView
           provider={null}
           mapType="none"
@@ -226,17 +246,20 @@ const Home = () => {
                     longitude: acidente.longitude,
                   }}
                   title="Local com ocorrência de acidente"
-                  description={"Redobre a atenção por aqui e, se possível, troque de rota!"}
+                  description={
+                    "Redobre a atenção por aqui e, se possível, troque de rota!"
+                  }
                 >
                   <IconButton icon={"alert"} color={Colors.red700} size={30} />
                 </Marker>
               );
             })}
         </MapView>
-      )}
+      ) : null}
+
       <View style={styles.mapLabelContainer}>
-        <Text style={styles.mapLabel} >
-        Mapa de calor de ocorrência de acidentes
+        <Text style={styles.mapLabel}>
+          Mapa de calor de ocorrência de acidentes
         </Text>
       </View>
       <IconButton
@@ -261,37 +284,69 @@ const Home = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Filtro de acidentes por período</Text>
+            <Text style={styles.modalText}>
+              Filtro de acidentes por período
+            </Text>
             <TouchableHighlight
-              style={(filterText == "all") ? styles.active : styles.inactive}
+              style={filterText == "all" ? styles.active : styles.inactive}
               onPress={() => filterAccidents("all", null)}
             >
-              <Text style={(filterText == "all") ? styles.modalTextActive : styles.modalTextInactive}>
+              <Text
+                style={
+                  filterText == "all"
+                    ? styles.modalTextActive
+                    : styles.modalTextInactive
+                }
+              >
                 Todos os acidentes
               </Text>
             </TouchableHighlight>
             <TouchableHighlight
-              style={(filterText == "currentMonth") ? styles.active : styles.inactive}
+              style={
+                filterText == "currentMonth" ? styles.active : styles.inactive
+              }
               onPress={() => filterAccidents("currentMonth", 30)}
             >
-              <Text style={(filterText == "currentMonth") ? styles.modalTextActive : styles.modalTextInactive}>
+              <Text
+                style={
+                  filterText == "currentMonth"
+                    ? styles.modalTextActive
+                    : styles.modalTextInactive
+                }
+              >
                 Acidentes dos ultimos 30 dias
               </Text>
             </TouchableHighlight>
             <TouchableHighlight
-              style={(filterText == "currentWeek") ? styles.active : styles.inactive}
+              style={
+                filterText == "currentWeek" ? styles.active : styles.inactive
+              }
               onPress={() => filterAccidents("currentWeek", 7)}
             >
-              <Text style={(filterText == "currentWeek") ? styles.modalTextActive : styles.modalTextInactive}>
-              Acidentes dos ultimos 7 dias
+              <Text
+                style={
+                  filterText == "currentWeek"
+                    ? styles.modalTextActive
+                    : styles.modalTextInactive
+                }
+              >
+                Acidentes dos ultimos 7 dias
               </Text>
             </TouchableHighlight>
             <TouchableHighlight
-              style={(filterText == "currentDay") ? styles.active : styles.inactive}
+              style={
+                filterText == "currentDay" ? styles.active : styles.inactive
+              }
               onPress={() => filterAccidents("currentDay", 1)}
             >
-              <Text style={(filterText == "currentDay") ? styles.modalTextActive : styles.modalTextInactive}>
-              Acidentes do dia
+              <Text
+                style={
+                  filterText == "currentDay"
+                    ? styles.modalTextActive
+                    : styles.modalTextInactive
+                }
+              >
+                Acidentes do dia
               </Text>
             </TouchableHighlight>
 
@@ -299,9 +354,7 @@ const Home = () => {
               style={styles.exitModalBtn}
               onPress={() => setModalVisible(false)}
             >
-              <Text style={styles.modalTextActive}>
-              Fechar Filtro
-              </Text>
+              <Text style={styles.modalTextActive}>Fechar Filtro</Text>
             </TouchableHighlight>
           </View>
         </View>

@@ -49,6 +49,16 @@ const HomeMenu: React.FC = () => {
         {/* <TouchableOpacity style={styles.btn} onPress={signOut}>
           <Text style={styles.bottomText}>Logout</Text>
         </TouchableOpacity> */}
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            Linking.openURL(
+              "https://www.youtube.com/watch?v=kWabyQOb7yQ&t=131s&ab_channel=JuliaSantana"
+            );
+          }}
+        >
+          <Text style={styles.bottomText}>Entenda o CRIS</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
