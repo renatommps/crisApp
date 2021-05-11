@@ -1,9 +1,8 @@
 import React from "react";
-import { Linking, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 
-import { RowItem } from "../../components/RowItem";
 const Quiz = () => {
   const navigation = useNavigation();
   return (
@@ -17,6 +16,18 @@ const Quiz = () => {
           onPress={() => navigation.navigate("QuizQuestions")}
         >
           <Text style={styles.bottomText}>Jogar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => navigation.navigate("Friend")}
+        >
+          <Text style={styles.bottomText}>Adicionar Amigos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => navigation.navigate("Rank")}
+        >
+          <Text style={styles.bottomText}>Ranque de Amigos</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -7,6 +7,8 @@ import Home from "../screens/Home";
 import Quiz from "../screens/Quiz";
 import QuizQuestions from "../screens/QuizQuestions";
 import KnowledgeArea from "../screens/KnowledgeArea";
+import Friend from "../screens/Friend";
+import Rank from "../screens/Rank";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +35,22 @@ const MainStackNavigator = () => {
       <Stack.Screen name="Map" component={Home}></Stack.Screen>
       <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="QuizQuestions" component={QuizQuestions} />
+      <Stack.Screen name="Friend" component={Friend}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTintColor: '#fff',
+          headerTitle: "",
+        }}
+      />
+      <Stack.Screen name="Rank" component={Rank}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTintColor: '#fff',
+          headerTitle: "",
+        }}
+      />
       <Stack.Screen name="KnowledgeArea" component={KnowledgeArea} />
     </Stack.Navigator>
   );

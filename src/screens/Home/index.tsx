@@ -105,6 +105,24 @@ const Home = () => {
             // Filter all accidentes that has no "data".
             let accidents = json.filter(accident => accident.data != null);
 
+            // acidentes para testes
+            // accidents.push({
+            //   "data": "02/05/2021",
+            //   "descricao": "Outros teste 1",
+            //   "detalhes": "Ônibus",
+            //   "id": "TESTE",
+            //   "latitude": -27.589248195118902,
+            //   "longitude": -48.5082068805516,
+            // });
+            // accidents.unshift({
+            //   "data": "03/05/2020",
+            //   "descricao": "Outros teste 2",
+            //   "detalhes": "Ônibus",
+            //   "id": "TESTE",
+            //   "latitude": -27.589248195118902,
+            //   "longitude": -48.5082068805516,
+            // });
+
             // Add Date to all the accidents.
             accidents.forEach((accident: Accident) => {
               const stringDate: string | undefined = accident.data;

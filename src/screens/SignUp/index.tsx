@@ -70,6 +70,7 @@ const Splash = () => {
       checkValid = false;
     }
     if (checkValid) {
+      setName(name.trim());
       setIsValid(true);
     }
   };
@@ -93,7 +94,7 @@ const Splash = () => {
             value={name}
             placeholder="Seu nome"
             placeholderTextColor="#6C6C6C"
-            onChangeText={(text) => setName(text.trim())}
+            onChangeText={(text) => setName(text)}
           />
         </View>
         <View style={styles.inputViewEmail}>
