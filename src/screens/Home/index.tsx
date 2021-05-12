@@ -12,7 +12,6 @@ import { UrlTile } from "react-native-maps";
 import { Heatmap, Marker } from "react-native-maps";
 import MapView from "react-native-map-clustering";
 import { IconButton, Colors } from "react-native-paper";
-import Permissions from "expo-permissions";
 import * as Location from "expo-location";
 
 type Accident = {
@@ -29,16 +28,15 @@ const MAX_ACCIDENTS_VALUE: number = 100;
 
 const Home = () => {
   const [trafficView, setTrafficView] = useState<boolean>(false);
-  const [location, setLocation] =
-    useState<Location.LocationObject | null>(null);
+  const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [accidents, setAccidents] = useState<Accident[]>([]);
   const [filteredAccidents, setFilteredAccidents] = useState<Accident[]>([]);
   const [filterText, setFilterText] = useState<string>("all");
   const [filterValue, setFilterValue] = useState<number | null>(null);
-  const [permission, setPermission] = useState<boolean>(false);
+  const [permission, setPermission] = useState<string>("");
 
-  // This will filter the accidentes when the filter value change.
+  // This will filter the accidents when the filter value change.
   useEffect(() => {
     (async () => {
       let newFilteredAccidents: Accident[] = JSON.parse(
@@ -79,31 +77,32 @@ const Home = () => {
     })();
   }, [filterValue]);
 
-  // Get permission to get user location.
   useEffect(() => {
     (async () => {
-      const { status } = await Permissions.askAsync(
-        Permissions.LOCATION_BACKGROUND
-      );
-      if (status !== "granted") {
-        Alert.alert("Permissão para acessar a localização negada!");
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      setPermission(status);
+      if (status !== 'granted') {
+        Alert.alert('Permissaõ para acessar a localização negada! Uma localização padrão será usada.');
+
+        // fallback location (Recife location)
+        const fallbackLocation = {
+          coords: {
+            latitude: -8.05941514041652,
+            longitude: -34.90712403164804,
+            altitude: null,
+            accuracy: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: Date.now(),
+        };
+        setLocation(fallbackLocation);
+
         return;
       }
-      const location = await Location.getCurrentPositionAsync({});
 
-      // Recife location.
-      // const location = {
-      //   coords: {
-      //     latitude: -8.05941514041652,
-      //     longitude: -34.90712403164804,
-      //     altitude: null,
-      //     accuracy: null,
-      //     altitudeAccuracy: null,
-      //     heading: null,
-      //     speed: null,
-      //   },
-      //   timestamp: Date.now(),
-      // };
+      let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
     })();
   }, []);
@@ -203,7 +202,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      {!permission && <ActivityIndicator size="large" color="#edc951" />}
+      {!location && <ActivityIndicator size="large" color="#edc951" />}
 
       {location && (
         <MapView
@@ -356,6 +355,12 @@ const Home = () => {
             >
               <Text style={styles.modalTextActive}>Fechar Filtro</Text>
             </TouchableHighlight>
+            <Text>
+              Permissão: {String(permission)}
+            </Text>
+            <Text>
+              Local:{JSON.stringify(location)}
+            </Text>
           </View>
         </View>
       </Modal>
