@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { ActivityIndicator, View, ScrollView, Text } from "react-native";
+import { View, ScrollView, Text } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import { styles } from "./styles";
 import { useAuth } from "../../hooks/auth";
@@ -58,8 +58,8 @@ interface Friend {
 const Rank = () => {
   const { user, token } = useAuth();
   const [friends, setFriends] = useState<Friend[]>([]);
+  const [rankedFriends, setRankedFriends] = useState<Friend[]>([]);
   const [pontuation, setPontuation] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState(false);
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -79,17 +79,16 @@ const Rank = () => {
 
   useEffect(() => {
     updateRank();
-  }, [pontuation]);
+  }, [pontuation, friends]);
 
-  const updateRank = (newFriends?: Friend[]) => {
-    console.log('[updateRank] newFriends: ', newFriends, ', friends:', friends, ', userPontuation:', pontuation);
+  const updateRank = () => {
     const userAsFriend: Friend = {
       name: user.name,
       email: user.email,
       pontuation: pontuation || 0
     };
-    const updatedFriends: Friend[] = [...(newFriends ?? friends), userAsFriend].sort(sortFriendsByPonctuation);
-    setFriends(updatedFriends);
+    const updatedFriends: Friend[] = [...friends, userAsFriend].sort(sortFriendsByPonctuation);
+    setRankedFriends(updatedFriends);
   };
 
   const updateProfile = useCallback(async () => {
@@ -154,6 +153,8 @@ const Rank = () => {
   }
 
   const getFriends = useCallback(async () => {
+    if (!isFocused) return;
+
     try {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -162,8 +163,8 @@ const Rank = () => {
       api.get("/profile/friendlist", config)
         .then(function (response) {
           console.log('response data:', response.data);
-          if (response?.data) {
-            updateRank(response.data);
+          if (response?.data && isFocused) {
+            setFriends(response.data);
           }
         })
         .catch(function (error) {
@@ -183,12 +184,11 @@ const Rank = () => {
 
   return (
     <View style={styles.container}>
-      {isLoading && <ActivityIndicator size="large" color="#EDC951" />}
       <View style={styles.topContainer}>
         <Text style={styles.titleText}>Ranque</Text>
       </View>
       <View style={styles.bottomContainer}>
-        <FriendsList friends={friends}/>
+        <FriendsList friends={rankedFriends}/>
       </View>
     </View>
   );
