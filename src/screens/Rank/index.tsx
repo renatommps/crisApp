@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { ActivityIndicator, View, ScrollView, Text } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
 import { styles } from "./styles";
 import { useAuth } from "../../hooks/auth";
 import api from "../../utils/api";
@@ -57,21 +58,66 @@ interface Friend {
 const Rank = () => {
   const { user, token } = useAuth();
   const [friends, setFriends] = useState<Friend[]>([]);
-  const [isValid, setIsValid] = useState(false);
+  const [pontuation, setPontuation] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
+    // Create an scoped async function in the hook
+    async function handleProfileUpdate() {
+      // console.log('inside handleProfileUpdate');
+      await updateProfile();
+    }
+    // Execute the created function directly
+    handleProfileUpdate();
+  }, [isFocused]);
+
+  useEffect(() => {
+    updateRank();
     getFriends();
   }, []);
 
   useEffect(() => {
+    updateRank();
+  }, [pontuation]);
+
+  const updateRank = (newFriends?: Friend[]) => {
+    console.log('[updateRank] newFriends: ', newFriends, ', friends:', friends, ', userPontuation:', pontuation);
     const userAsFriend: Friend = {
       name: user.name,
       email: user.email,
-      pontuation: user.pontuation || 0
+      pontuation: pontuation || 0
     };
-    const updatedFriends: Friend[] = [...[], userAsFriend].sort(sortFriendsByPonctuation);
+    const updatedFriends: Friend[] = [...(newFriends ?? friends), userAsFriend].sort(sortFriendsByPonctuation);
     setFriends(updatedFriends);
+  };
+
+  const updateProfile = useCallback(async () => {
+    try {
+      if (!user || !user.id || !isFocused) return;
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+
+      const bodyParameters = {
+        id: user.id,
+        pontuation: 0,
+      };
+
+      api
+        .patch("profile", bodyParameters, config)
+        .then(function (response) {
+          if (response?.data?.pontuation && isFocused) {
+            setPontuation(response.data.pontuation);
+          }
+        })
+        .catch(function (error) {
+          console.log("response:", error);
+        });
+    } catch (ex) {
+      console.log("Could not get user profile.", ex);
+    }
   }, []);
 
   const FriendsList = (props: any) => {
@@ -117,17 +163,11 @@ const Rank = () => {
         .then(function (response) {
           console.log('response data:', response.data);
           if (response?.data) {
-            const userAsFriend: Friend = {
-              name: user.name,
-              email: user.email,
-              pontuation: user.pontuation || 0
-            };
-            const updatedFriends: Friend[] = [...response.data, userAsFriend].sort(sortFriendsByPonctuation);
-            setFriends(updatedFriends);
+            updateRank(response.data);
           }
         })
         .catch(function (error) {
-          console.log("error get:", error);
+          console.log("error get friendlist:", error);
         });
     } catch (ex) {
       console.log("Could not get user profile.", ex);

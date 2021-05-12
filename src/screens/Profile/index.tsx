@@ -1,13 +1,12 @@
 import React, { useEffect, useCallback, useState } from "react";
 import {
   Alert,
-  Linking,
   Platform,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Avatar } from "react-native-paper";
 import { styles } from "./styles";
@@ -19,7 +18,6 @@ import defaultAvatar from "../../assets/avatar.png";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Profile = () => {
-  const navigation = useNavigation();
   const { token, user } = useAuth();
   const [pontuation, setPontuation] = useState<number>(0);
   const isFocused = useIsFocused();
@@ -83,9 +81,7 @@ const Profile = () => {
 
   const updateProfile = useCallback(async () => {
     try {
-      if (!user || !user.id) return;
-
-      // console.log('inside updateProfile, will call api profile with id:', user.id);
+      if (!user || !user.id || !isFocused) return;
 
       const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -96,14 +92,13 @@ const Profile = () => {
         pontuation: 0,
       };
 
-      // console.log('config:', bodyParameters, config);
-      // console.log('Authorization:', token);
       api
         .patch("profile", bodyParameters, config)
         .then(function (response) {
           // console.log('response:', response, 'pontuation:', response.data.pontuation);
-          if (response?.data?.pontuation)
+          if (response?.data?.pontuation && isFocused) {
             setPontuation(response.data.pontuation);
+          }
         })
         .catch(function (error) {
           console.log("response:", error);
