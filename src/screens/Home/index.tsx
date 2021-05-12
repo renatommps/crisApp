@@ -82,7 +82,7 @@ const Home = () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       setPermission(status);
       if (status !== 'granted') {
-        Alert.alert('Permissaõ para acessar a localização negada! Uma localização padrão será usada.');
+        Alert.alert('Permissão para acessar a localização negada! Uma localização padrão será usada.');
 
         // fallback location (Recife location)
         const fallbackLocation = {
@@ -355,12 +355,6 @@ const Home = () => {
             >
               <Text style={styles.modalTextActive}>Fechar Filtro</Text>
             </TouchableHighlight>
-            <Text>
-              Permissão: {String(permission)}
-            </Text>
-            <Text>
-              Local:{JSON.stringify(location)}
-            </Text>
           </View>
         </View>
       </Modal>
