@@ -25,13 +25,13 @@ export const styles = StyleSheet.create({
     paddingBottom: 2,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#EDC951',
-    backgroundColor: "#EDC951"
+    borderColor: "#EDC951",
+    backgroundColor: "#EDC951",
   },
   mapLabel: {
     fontSize: 20,
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   trafficIcon: {
     position: "absolute",
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     borderWidth: 3,
-    borderColor: "black"
+    borderColor: "black",
   },
   centeredView: {
     flex: 1,
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   openButton: {
     backgroundColor: "#F194FF",
@@ -87,7 +87,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 15,
     paddingVertical: 4,
-    paddingHorizontal: 8
+    paddingHorizontal: 8,
   },
   inactive: {
     backgroundColor: "#ffffff",
@@ -96,11 +96,11 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     marginBottom: 15,
     paddingVertical: 4,
-    paddingHorizontal: 8
+    paddingHorizontal: 8,
   },
   modalTextActive: {
     color: "#000000",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   modalTextInactive: {
     color: "#000000",
@@ -110,6 +110,6 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     paddingVertical: 4,
-    paddingHorizontal: 8
-  }
+    paddingHorizontal: 8,
+  },
 });

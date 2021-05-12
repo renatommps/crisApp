@@ -12,6 +12,7 @@ import { UrlTile } from "react-native-maps";
 import { Heatmap, Marker } from "react-native-maps";
 import MapView from "react-native-map-clustering";
 import { IconButton, Colors } from "react-native-paper";
+import Permissions from "expo-permissions";
 import * as Location from "expo-location";
 
 type Accident = {
@@ -81,14 +82,15 @@ const Home = () => {
   // Get permission to get user location.
   useEffect(() => {
     (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
+      const { status } = await Permissions.askAsync(
+        Permissions.LOCATION_BACKGROUND
+      );
       if (status !== "granted") {
-        setPermission(false);
         Alert.alert("Permissão para acessar a localização negada!");
         return;
       }
       const location = await Location.getCurrentPositionAsync({});
-      setPermission(true);
+
       // Recife location.
       // const location = {
       //   coords: {
@@ -203,14 +205,14 @@ const Home = () => {
     <View style={styles.container}>
       {!permission && <ActivityIndicator size="large" color="#edc951" />}
 
-      {location && permission ? (
+      {location && (
         <MapView
           provider={null}
           mapType="none"
           initialRegion={{
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
-            latitudeDelta: 0.2,
+            latitudeDelta: 0.1,
             longitudeDelta: 0.0,
           }}
           showsTraffic={trafficView}
@@ -229,8 +231,6 @@ const Home = () => {
         >
           <UrlTile
             urlTemplate={`https://mapas.pe.gov.br/hot/{z}/{x}/{y}.png`}
-            maximumZ={19}
-            flipY={false}
           />
           {filteredAccidents[0] != null && (
             <Heatmap points={getLocations()} radius={50} opacity={0.5} />
@@ -255,7 +255,7 @@ const Home = () => {
               );
             })}
         </MapView>
-      ) : null}
+      )}
 
       <View style={styles.mapLabelContainer}>
         <Text style={styles.mapLabel}>
